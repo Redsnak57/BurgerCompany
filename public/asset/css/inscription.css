@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Georama:wght@400;600;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georama', sans-serif;
+
+}
+:root{
+    --couleur-body :#F9F9F9;  
+    --important : #0594D0; 
+    --btn-hover : #007198;
+    --ecriture-nav : #F2F2F2; 
+    --txt-body : #7E7E7E; 
+    --btn-action : linear-gradient(265.48deg, #F60030 46.34%, #FFCF00 102.96%); 
+}
+
+body {
+    background: var(--couleur-body);
+}
+
+
+/* .form-container h2 {
+    text-align: center;
+    color: var(--important);
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 50%;
+    margin: 10vh auto;
+    gap: .4rem;
+    background: rgb(241, 241, 241);
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--important);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+form input {
+    border: none;
+    outline: none;
+    padding: 1rem;
+    width: 50%;
+    border-radius: 8px;
+    background: var(--important);
+    color : var(--ecriture-nav);
+}
+
+form input::placeholder {
+    color: var(--ecriture-nav);
+}
+
+.btn {
+    padding: 1rem;
+    background: var(--btn-action);
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--ecriture-nav);
+}
+
+.btn-inscription {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.dejaCompte a {
+    color: var(--important);
+    text-decoration: none;
+}
+
+.dejaCompte a:hover {
+    text-decoration: underline;
+}

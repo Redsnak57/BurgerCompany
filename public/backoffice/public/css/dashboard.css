@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Georama:wght@400;600;800&display=swap');
+
+/* paramètre de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georama', sans-serif;
+}
+
+/* couleur */ 
+:root{
+    --couleur-body :#F9F9F9;  
+    --important : #0594D0; 
+    --btn-hover : #007198;
+    --ecriture-nav : #F2F2F2; 
+    --txt-body : #7E7E7E; 
+    --btn-action : linear-gradient(265.48deg, #F60030 46.34%, #FFCF00 102.96%); 
+
+}
+
+
+/* section container */
+.section {
+    width: 100%;
+    padding: 60px 15px;
+}
+.section .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/*container box */ 
+.section .container .box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 120px;
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: 0;
+    transition: ease-in-out .4s;
+    background-color: var(--important);
+    -webkit-box-shadow: 6px 10px 9px -2px #c4c4c4; 
+    box-shadow: 6px 0px 9px -2px #c4c4c4;
+}
+
+.section .container .box span {
+    font-size: 32px;
+    color: var(--ecriture-nav);
+    font-weight: 900;
+}
+
+.section .container .box p {
+    position: absolute;
+    bottom: 20px;
+    color: var(--ecriture-nav);
+}
+
+.section .container .box .bi {
+    color: var(--ecriture-nav);
+    font-size: 2rem;
+}
+
+.section .container .box:hover {
+    background-color: var(--btn-hover);
+}
+
+/* section charts */
+
+.section .charts .box {
+    width: 100%;
+    padding: 10rem 1.5rem;
+    border-radius: 8px;
+    background: var(--important);
+    border: 0;
+    transition: ease-in-out .4s;
+}
+
+.section .charts .box canvas {
+    background-color: var(--couleur-body);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.section .charts .box:hover {
+    background-color: var(--btn-hover);
+}
+
+/* section tableaux */
+
+

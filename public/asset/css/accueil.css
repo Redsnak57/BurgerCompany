@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Georama:wght@400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georama', sans-serif;
+}
+
+:root{
+    --couleur-body :#F9F9F9;  
+    --important : #0594D0; 
+    --btn-hover : #007198;
+    --ecriture-nav : #F2F2F2; 
+    --txt-body : #7E7E7E; 
+    --btn-action : linear-gradient(265.48deg, #F60030 46.34%, #FFCF00 102.96%); 
+
+}
+
+.header .container {
+    position: relative;
+}
+.header .container .image {
+    height: 90vh;
+    background-image: url("../img/test.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.header .container .commander{
+    position: absolute;
+    left: 45%;
+    top: 50%;
+}
+
+.header .container .btn {
+    padding: 1rem;
+    background: var(--btn-action);
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--ecriture-nav);
+}
+
+.header .container .heading {
+    position: absolute;
+    left:35%;
+    top: 40%;
+    color: var(--btn-hover);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* heading */
+.heading {
+    text-align: center;
+    font-size: 1.6rem;
+    color: var(--txt-body);
+}
+
+.heading span {
+    color: var(--important);
+    font-weight: 800;
+}
+
+/* step */ 
+.step {
+    width: 100%;
+    margin-top: 10vh;
+}
+.step .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(27rem,1fr));
+    padding: 0 1rem 0 1rem;
+}
+
+.step .container .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.step .container .box p {
+    padding: 2rem;
+    color : var(--txt-body);
+}
+
+.step .container .box img {
+    width: 100%;
+}
+
+/* vedettes */ 
+
+.vedettes {
+    width: 100%;
+    margin-top: 10vh;
+}
+
+.vedettes .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem,1fr));
+    padding: 3rem 1rem 5rem 1rem;
+    gap: 1rem;
+}
+
+.vedettes .container .box img{
+    width: 40%;
+    margin: 0.3rem auto;
+}
+
+.vedettes .container .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #30ace03f;
+    width: 80%;
+    margin: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.vedettes .container .box p {
+    text-align: center;
+    color: var(--txt-body);
+    padding: 1rem;
+}
+
+.vedettes .container .box .prix_promo {
+    text-align: center;
+    color: var(--important);
+    padding: 1rem;
+    font-weight: 800;
+}
+
+
+.vedettes .container .box .acheter i {
+    color: var(--important);
+    display: none;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.vedettes .container .box .acheter .droite_i {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+}
+
+.vedettes .container .box .acheter .gauche_i {
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+}
+.vedettes .container  .box:hover .acheter .droite_i{
+    display: block;
+    transition: .5s ease-in; /* fonctionne pas  */
+}
+.vedettes .container  .box:hover .acheter .gauche_i{
+    display: block;
+    transition: .5s ease-in; /* fonctionne pas  */
+}
+
+.promo::after {
+    position: absolute;
+    content: "-10%";
+    color: white;
+    background: var(--important);
+    padding: 1px 24px;
+    transform: rotate(45deg);
+    top : 10px;
+    right: -20px;
+}

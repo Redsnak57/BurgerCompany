@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Georama:wght@400;600;800&display=swap');
+
+/* paramètre de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georama', sans-serif;
+}
+
+/* couleur */ 
+:root{
+    --couleur-body :#F9F9F9;  
+    --important : #0594D0; 
+    --btn-hover : #007198;
+    --ecriture-nav : #F2F2F2; 
+    --txt-body : #7E7E7E; 
+    --btn-action : linear-gradient(265.48deg, #F60030 46.34%, #FFCF00 102.96%); 
+
+}
+
+body {
+    background: var(--important);
+}
+
+.container {
+    max-width: 440px;
+    padding: 0 20px;
+    margin: 170px auto;
+}
+
+.wrapper{
+    width: 100%;
+    background: var(--couleur-body);
+    border-radius: 8px;
+}
+
+.wrapper .title {
+    line-height: 80px;
+    background: var(--btn-hover);
+    padding-left: 20px;
+    border-radius: 5px 5px 0 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--couleur-body);
+}
+
+.wrapper form {
+    padding: 30px 20px 25px 20px;
+}
+
+.wrapper form .row {
+    position: relative;
+    height: 45px;
+    margin-bottom: 15px;
+}
+
+.wrapper form .row input {
+    height: 100%;
+    width: 100%;
+    padding-left: 60px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    transition: all 0.3 ease;
+}
+
+form .row input:focus {
+    border-color: var(--important);
+    box-shadow: inset 0px 0px 1px 1px var(--important);
+}
+
+.wrapper form .row i {
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: var(--ecriture-nav);
+    font-size: 1.5rem;
+    background: var(--important);
+    border: 1px solid var(--important);
+    border-radius: 8px 0 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper form .button input {
+    padding-left: 0px;
+    background: var(--important);
+    border: 1px solid var(--important);
+    color: var(--ecriture-nav);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.wrapper form .pass a {
+    color: var(--btn-hover);
+    text-decoration: none;
+}
+
+.wrapper form .pass a:hover {
+    text-decoration: underline;
+}
