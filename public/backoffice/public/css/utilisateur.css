@@ -19,13 +19,67 @@
 
 }
 
+/* Utilisateur + rechercher user */
 
-/* section container */
-.section {
-    width: 100%;
-    padding: 60px 15px;
+.main-title {
+    margin: 30px 0 ;
 }
 
-.section h2 {
-    color : red;
+.table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.input-control {
+    display: flex;
+    align-items: center;
+    max-width: 450px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 25px;
+}
+
+.input-control input {
+    width: 100%;
+    font-size: 1rem;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    color: #000;
+    background: #f4f4f4;
+}
+
+.input-control i {
+    cursor: pointer;
+}
+
+.input-control input::placeholder {
+    color : #838f9f;
+    font-size: 16px;
+}
+
+.table-title {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.table-results {
+    grid-column: 1 / -1;
+}
+
+.table-item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    padding: 15px 10px;
+    background: #fff;
+}
+
+.table-item:nth-child(odd) {
+    background: #f1f9f6;
+}
+
+.table p {
+    padding: 0 15px;
 }

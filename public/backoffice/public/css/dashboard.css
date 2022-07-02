@@ -19,13 +19,8 @@
 
 }
 
-
-/* section container */
-.section {
-    width: 100%;
-    padding: 60px 15px;
-}
-.section .container {
+/* container suivis des stats */
+.container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 1rem;
@@ -33,8 +28,7 @@
     padding-bottom: 40px;
 }
 
-/*container box */ 
-.section .container .box {
+.container .box {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,34 +41,34 @@
     border: 0;
     transition: ease-in-out .4s;
     background-color: var(--important);
-    -webkit-box-shadow: 6px 10px 9px -2px #c4c4c4; 
-    box-shadow: 6px 0px 9px -2px #c4c4c4;
+    -webkit-box-shadow: 11px 5px 14px 0px rgba(0,0,0,0.5); 
+    box-shadow: 11px 5px 14px 0px rgba(0,0,0,0.5);
 }
 
-.section .container .box span {
+.container .box span {
     font-size: 32px;
     color: var(--ecriture-nav);
     font-weight: 900;
 }
 
-.section .container .box p {
+.container .box p {
     position: absolute;
     bottom: 20px;
     color: var(--ecriture-nav);
 }
 
-.section .container .box .bi {
+.container .box .bi {
     color: var(--ecriture-nav);
     font-size: 2rem;
 }
 
-.section .container .box:hover {
+.container .box:hover {
     background-color: var(--btn-hover);
 }
 
 /* section charts */
 
-.section .charts .box {
+.charts .box {
     width: 100%;
     padding: 10rem 1.5rem;
     border-radius: 8px;
@@ -83,16 +77,49 @@
     transition: ease-in-out .4s;
 }
 
-.section .charts .box canvas {
+.charts .box canvas {
     background-color: var(--couleur-body);
     padding: 15px;
     border-radius: 8px;
 }
 
-.section .charts .box:hover {
+.charts .box:hover {
     background-color: var(--btn-hover);
 }
 
-/* section tableaux */
+/*  Dernier user */
 
+.main-title {
+    margin: 30px 0;
+    color: var(--txt-body);
+}
+.table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 
+.table-title {
+    font-size: 16px;
+    padding: 10px;
+    color: var(--txt-body);
+}
+
+.table-results {
+    grid-column: 1 / -1;
+}
+
+.table-item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    padding: 15px 10px;
+    background: #fff;
+}
+
+.table-item:nth-child(odd) {
+    background: #eafaf4;
+}
+
+.table p {
+    padding: 0 15px;
+}
