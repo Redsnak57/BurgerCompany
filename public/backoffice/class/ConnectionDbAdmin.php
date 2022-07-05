@@ -8,7 +8,7 @@
  * @param string $mdp
  * @param string $char
  */
-class ConnectionDb {
+class ConnectionDbAdmin {
 
     public static $instance;
 
@@ -35,7 +35,7 @@ class ConnectionDb {
 
     public static function getInstance($host = "", $dbname = "", $user = "", $mdp = "", $char = "utf-8"){
         if(is_null(self::$instance)){
-            self::$instance = new ConnectionDb($host, $dbname, $user, $mdp, $char);
+            self::$instance = new ConnectionDbAdmin($host, $dbname, $user, $mdp, $char);
         }
         return self::$instance;     
     }

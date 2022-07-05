@@ -1,10 +1,11 @@
+// Chercher des utilisateurs 
 const searchInput = document.querySelector("#search");
 const searchResult = document.querySelector(".table-results");
 
 let dataArray;
 
 async function getUsers(){
-    const res = await fetch("https://randomuser.me/api/?nat=fr&results=10")
+    const res = await fetch("https://randomuser.me/api/?nat=fr&results=10") //API utilisateur random
 
     const { results } = await res.json()
 

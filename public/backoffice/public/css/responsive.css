@@ -7,6 +7,9 @@
     .side-nav {
         display: none;
     }
+    .hamburger-nav {
+        display: inline-block;
+    }
     .main-content {
         grid-column: 1;
     }

@@ -1,3 +1,17 @@
+<?php
+
+/* Création autoLoader */ 
+function loadClass($class){
+    require('../class/'.$class.'.php');
+}
+spl_autoload_register('loadClass');
+
+
+/* Appel de la BDD */
+$bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +19,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burger Company</title>
-    <!-- Css -->
+    <!-- Css config-->
     <link rel="stylesheet" href="../public/css/nav_admin.css">
     <link rel="stylesheet" href="../public/css/responsive.css">
+    <!--  css -->
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+    <link rel="stylesheet" href="../public/css/utilisateur.css">
+    <link rel="stylesheet" href="../public/css/gestionAdmin.css">
     <!-- cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
@@ -15,6 +33,9 @@
 
     <!-- Nav gauche du site grid colum 1  -->
     <div class="global-container">
+        <div class="hamburger-nav" id="menu-icon">
+            <i class="bi bi-list"></i>
+        </div>
         <nav class="side-nav">
             <div class="nav-logo">
                 <img src="../../asset/img/logo.png" alt="">
@@ -28,6 +49,10 @@
             <?= "<a href='index.php?page=utilisateur' class='block-link'>"; ?>
                 <i class="bi bi-people-fill"></i>
                 <span class="nav-links">Utilisateur</span>
+            </a>
+            <?= "<a href='index.php?page=gestionAdmin' class='block-link'>"; ?>
+                <i class="bi bi-person-plus"></i>
+                <span class="nav-links"> Administrateurs</span>
             </a>
             <?= "<a href='index.php?page=produits' class='block-link'>"; ?>
                 <i class="bi bi-ui-radios-grid"></i>
@@ -59,6 +84,9 @@
                             break;
                         case "utilisateur":
                             include("./utilisateur.php");
+                            break;
+                        case "gestionAdmin":
+                            include("./gestionAdmin.php");
                             break;
                         case "produits":
                             include("./produits.php");

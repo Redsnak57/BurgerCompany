@@ -1,22 +1,18 @@
 <?php
-// require "../class/Autoloader.php";
-// BC\Autoloader::register();
 
-// $bdd = new ConnectionDb::getInstance();
-include "../class/ConnectionDb.php";
+/* Création autoLoader */ 
+function loadClass($class){
+    require('../class/'.$class.'.php');
+}
+spl_autoload_register('loadClass');
 
+/* Appel de la BDD */
+$bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
 
-// include "../controller/config/db.php";
-
-// var_dump(BC\Config::getInstance()->get("db_user"));
-
-// include "../controller/class/Database.php";
-// $config = new Config::getInstance();
-// var_dump($config); 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +20,10 @@ include "../class/ConnectionDb.php";
     <title>Burger Company</title>
     <!-- nav -->
     <link rel="stylesheet" href="./asset/css/nav.css">
+    <!-- vue -->
+    <link rel="stylesheet" href="./asset/css/accueil.css">
+    <link rel="stylesheet" href="./asset/css/header.css">
+    <link rel="stylesheet" href="./asset/css/inscription.css"> 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -120,5 +120,6 @@ include "../class/ConnectionDb.php";
     <p class=copyright> &#169; Site crée par Redsnak</p>
 
     <script src="./asset/js/nav.js"></script>
+    <script src="./asset/js/inscription.js"></script>
 </body>
 </html>

@@ -20,51 +20,73 @@ body {
     background: var(--couleur-body);
 }
 
-
-/* .form-container h2 {
-    text-align: center;
-    color: var(--important);
-}
-
-.form-container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    width: 50%;
-    margin: 10vh auto;
-    gap: .4rem;
+.multi-step-form {
+    min-height: 80vh;
+    overflow: hidden;
+    position: relative;
     background: rgb(241, 241, 241);
+    border-radius: 8px;
+    width: 50%;
+    margin: 50px auto;
 }
 
 form h2 {
     text-align: center;
-    margin-bottom: 15px;
+    margin: 15px;
     color: var(--important);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-form input {
-    border: none;
-    outline: none;
-    padding: 1rem;
-    width: 50%;
-    border-radius: 8px;
-    background: var(--important);
-    color : var(--ecriture-nav);
+.multi-step-form .card .step-title {
+    color: var(--ecriture-nav);
+}
+.card {
+background-color: var(--important);
+border-radius: .5rem;
+padding: .5rem;
+max-width: 300px;
+margin: 0 auto;
+animation: fade 250ms ease-in-out forwards;
 }
 
-form input::placeholder {
-    color: var(--ecriture-nav);
+.form-group {
+display: flex;
+flex-direction: column;
+margin-bottom: .5rem;
+gap: .25em;
+}
+
+.form-group:last-child {
+margin: 0;
+}
+
+.form-group > label {
+font-weight: bold;
+font-size: .8em;
+color: var(--ecriture-nav);
+}
+
+.form-group > input {
+border: 1px solid var(--ecriture-nav);
+border-radius: .25em;
+font-size: 1rem;
+padding: .25em;
+outline: none;
+}
+
+.step-title {
+margin: 0;
+margin-bottom: 1rem;
+text-align: center;
+}
+
+.card.active {
+animation: slide 250ms 125ms ease-in-out both;
+}
+
+.hide {
+display: none;
 }
 
 .btn {
@@ -80,11 +102,31 @@ form input::placeholder {
     margin-bottom: 2rem;
 }
 
-.dejaCompte a {
-    color: var(--important);
-    text-decoration: none;
+.erreur {
+    display: flex;
+    justify-content: center;
+    color: red;
 }
 
-.dejaCompte a:hover {
-    text-decoration: underline;
+@keyframes slide {
+0% {
+    transform: translateX(200%);
+    opacity: 0;
+}
+100% {
+    transform: translateX(0);
+    opacity: 1;
+}
+}
+
+@keyframes fade {
+0% {
+    transform: scale(1);
+    opacity: 1;
+}
+
+100% {
+    opacity: 0;
+    transform: scale(0);
+}
 }
