@@ -10,6 +10,8 @@ class UserManager{
         $this->user['prenom'] = $array['prenom'];
         $this->user['email'] = $array['email'];
         $this->user['password'] = $array['password'];
+        $this->user['rueAdresse'] = $array['rueAdresse'];
+        $this->user['numeroAdresse'] = $array['numeroAdresse'];
         $this->user['ID_ville'] = $this->getVilleIdByName(ConnectionDb::getInstance()->connection, $array['ville']);
         $this->utilisateur = new User();
         $this->utilisateur->hydrate($this->user);
@@ -32,12 +34,14 @@ class UserManager{
         if($this->checkUser($bdd, $user) == 1) {
             return "<span class='erreur'> Email déjà existante </span>";
         } else {
-            $str = 'INSERT INTO user(nom, prenom, email, `password`, ID_ville) VALUES (:nom, :prenom, :mail, :pass, 56)';
+            $str = 'INSERT INTO user(nom, prenom, email, `password`, rue_adresse, numero_adresse, ID_ville) VALUES (:nom, :prenom, :mail, :pass, :rue, :numero, 56)';
             $query = $bdd->prepare($str);
             $query->bindValue(':nom', $user->getNom(), PDO::PARAM_STR);
             $query->bindValue(':prenom', $user->getPrenom(), PDO::PARAM_STR);
             $query->bindValue(':mail', $user->getEmail(), PDO::PARAM_STR);
             $query->bindValue(':pass', $user->getPassword(), PDO::PARAM_STR);
+            $query->bindValue(':rue', $user->getRueAdresse(), PDO::PARAM_STR);
+            $query->bindValue(':numero', $user->getNumeroAdresse(), PDO::PARAM_STR);
             $query->execute();
         }
     }

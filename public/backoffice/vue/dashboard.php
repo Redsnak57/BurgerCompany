@@ -3,7 +3,14 @@
 <!-- Container suivis des stats  -->
 <div class="container">
     <div class="box">
-            <span> 100</span>
+            <span>
+                <?php
+                $select_modele = $bdd->prepare("SELECT * FROM `user`");
+                $select_modele->execute();
+                $numbers_of_modele = $select_modele->rowCount();
+                echo $numbers_of_modele
+                ?>
+            </span>
             <p> utilisateurs inscrit</p>
             <i class="bi bi-people-fill"></i>
     </div>

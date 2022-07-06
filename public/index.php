@@ -24,6 +24,7 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
     <link rel="stylesheet" href="./asset/css/accueil.css">
     <link rel="stylesheet" href="./asset/css/header.css">
     <link rel="stylesheet" href="./asset/css/inscription.css"> 
+    <link rel="stylesheet" href="./asset/css/contact.css"> 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>

@@ -1,6 +1,6 @@
 <?php
-    if(isset($_POST["email"],$_POST["cEmail"],$_POST["password"],$_POST["cPassword"],$_POST["nom"],$_POST["prenom"],$_POST["ville"],$_POST["rue"],$_POST["nRue"])){
-        if(!empty($_POST["email"]) && !empty($_POST["cEmail"]) && !empty($_POST["password"]) && !empty($_POST["cPassword"]) && !empty($_POST["nom"]) && !empty($_POST["prenom"]) && !empty($_POST["ville"]) && !empty($_POST["rue"]) && !empty($_POST["nRue"])){
+    if(isset($_POST["email"],$_POST["cEmail"],$_POST["password"],$_POST["cPassword"],$_POST["nom"],$_POST["prenom"],$_POST["ville"],$_POST["rueAdresse"],$_POST["numeroAdresse"])){
+        if(!empty($_POST["email"]) && !empty($_POST["cEmail"]) && !empty($_POST["password"]) && !empty($_POST["cPassword"]) && !empty($_POST["nom"]) && !empty($_POST["prenom"]) && !empty($_POST["ville"]) && !empty($_POST["rueAdresse"]) && !empty($_POST["numeroAdresse"])){
             if($_POST["password"] != $_POST["cPassword"]){
                 echo "<span class='erreur'>Les mots de passe ne correspondent pas.</span>";
             } elseif ($_POST["email"] != $_POST["cEmail"]) {
@@ -54,12 +54,12 @@
             <input type="text" name="ville" id="ville">
         </div>
         <div class="form-group">
-            <label for="rue">Rue</label>
-            <input type="text" name="rue" id="rue">
+            <label for="rueAdresse">Rue</label>
+            <input type="text" name="rueAdresse" id="rueAdresse">
         </div>
         <div class="form-group">
-            <label for="nRue">Numéro de rue</label>
-            <input type="number" name="nRue" id="nRue">
+            <label for="numeroAdresse">Numéro de rue</label>
+            <input type="number" name="numeroAdresse" id="numeroAdresse">
         </div>
         <button type="button" data-previous class="btn btn-inscription">Précedant</button>
         <button type="submit" class="btn btn-inscription">S'inscire</button>

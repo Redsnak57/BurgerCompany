@@ -7,14 +7,18 @@ class User{
     private $prenom;
     private $email;
     private $password;
+    private $rueAdresse;
+    private $numeroAdresse;
     private $ID_ville;
 
-    public function __construct($ID = '', $nom = '', $prenom = '', $email = '', $password = '', $ville = ''){
+    public function __construct($ID = '', $nom = '', $prenom = '', $email = '', $password = '', $rueAdresse = '', $numeroAdresse = '', $ville = ''){
         $this->ID = $ID;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
         $this->password = $password;
+        $this->rueAdresse = $rueAdresse;
+        $this->numeroAdresse = $numeroAdresse;
         $this->ID_ville = $ville;
     }
 
@@ -51,6 +55,14 @@ class User{
         return $this->password;
     }
 
+    public function getRueAdresse(){
+        return $this->rueAdresse;
+    }
+
+    public function getNumeroAdresse(){
+        return $this->numeroAdresse;
+    }
+
     public function getID_ville(){
         return $this->ID_ville;
     }
@@ -67,6 +79,14 @@ class User{
 
     public function setEmail($email){
         $this->email = $email;
+    }
+
+    public function setRueAdresse($rueAdresse){
+        $this->rueAdresse = $rueAdresse;
+    }
+
+    public function setNumeroAdresse($numeroAdresse){
+        $this->numeroAdresse = $numeroAdresse;
     }
 
     public function setPassword($password){

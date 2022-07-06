@@ -48,3 +48,23 @@ if(isset($_POST["email"],$_POST["password"],$_POST["cEmail"],$_POST["cPassword"]
 </div>
 
 <h2> Voir le(s) administrateur(s) </h2>
+
+<?php
+
+$afficher_admin = new AfficherAdmin();
+$admin = $afficher_admin->afficherAdmin($bdd, $user);
+$afficher_admin->afficherAdmin(ConnectionDbAdmin::getInstance()->connection, $user);
+
+
+foreach ($affichageVehicule as $index) {
+echo "<tr>
+    <td>$index[email]</td>
+
+</tr>
+
+";
+
+}
+
+
+?>
