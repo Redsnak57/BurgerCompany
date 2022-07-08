@@ -19,16 +19,23 @@
 
 }
 
-.addAdmin {
-    max-width: 440px;
-    padding: 0 20px;
-    margin: 50px auto;
+.container-addAdmin {
+    display: grid;
+    gap: 1rem;
+    grid-auto-rows: auto;
 }
 
 .wrapper{
     width: 100%;
     background: var(--couleur-body);
     border-radius: 8px;
+    margin-top: 1.5rem;
+    height: auto;
+}
+
+.wrapper h2 {
+    color: var(--txt-body);
+    text-align: center;
 }
 
 .wrapper form {
@@ -95,3 +102,7 @@ form .row input:focus {
 .erreur {
     color: red;
 }
+
+/* voir les admins */
+
+

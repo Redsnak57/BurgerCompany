@@ -13,7 +13,7 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -111,7 +111,7 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../public/js/scripts.js"></script>
+    <!-- <script src="../public/js/scripts.js"></script> -->
     <script src="../public/js/charts.js"></script>
     <script src="../public/js/app.js"></script>
 </body>

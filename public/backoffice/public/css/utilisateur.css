@@ -27,7 +27,7 @@
 
 .table {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .input-control {
@@ -59,27 +59,3 @@
     font-size: 16px;
 }
 
-.table-title {
-    font-size: 16px;
-    padding: 10px;
-}
-
-.table-results {
-    grid-column: 1 / -1;
-}
-
-.table-item {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    align-items: center;
-    padding: 15px 10px;
-    background: #fff;
-}
-
-.table-item:nth-child(odd) {
-    background: #f1f9f6;
-}
-
-.table p {
-    padding: 0 15px;
-}

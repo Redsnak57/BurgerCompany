@@ -4,16 +4,16 @@ const searchResult = document.querySelector(".table-results");
 
 let dataArray;
 
-async function getUsers(){
-    const res = await fetch("https://randomuser.me/api/?nat=fr&results=10") //API utilisateur random
+// async function getUsers(){
+//     const res = await fetch("https://randomuser.me/api/?nat=fr&results=10") //API utilisateur random
 
-    const { results } = await res.json()
+//     const { results } = await res.json()
 
-    dataArray = orderList(results)
-    createUserList(dataArray)
-}
+//     dataArray = orderList(results)
+//     createUserList(dataArray)
+// }
 
-getUsers()
+// getUsers()
 
 function orderList(data) {
 
@@ -34,7 +34,7 @@ function createUserList(usersList) {
 
     usersList.forEach(user => {
         const listItem = document.createElement("div");
-        listItem.setAttribute("class", "table-item");
+        listItem.setAttribute("class", "table-result");
 
         listItem.innerHTML = 
         ` 

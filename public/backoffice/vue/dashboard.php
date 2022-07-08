@@ -5,10 +5,14 @@
     <div class="box">
             <span>
                 <?php
-                $select_modele = $bdd->prepare("SELECT * FROM `user`");
-                $select_modele->execute();
-                $numbers_of_modele = $select_modele->rowCount();
-                echo $numbers_of_modele
+                // $select_modele = $bdd->prepare("SELECT * FROM `user`");
+                // $select_modele->execute();
+                // $numbers_of_modele = $select_modele->rowCount();
+                // echo $numbers_of_modele
+                // $afficher_user = new Dashboard($user);
+                // $user = $afficher_user->getUser($bdd, $user);
+                // $user->getUser(ConnectionDbAdmin::getInstance()->connection, $user);
+                // echo $user;
                 ?>
             </span>
             <p> utilisateurs inscrit</p>
@@ -45,12 +49,29 @@
 <h2 class="main-title"> 10 derniers utilisateurs inscrits</h2>
 
 <div class="table">
-    <h3 class="table-title"> Name</h3>
+    <h3 class="table-title"> Nom</h3>
+    <h3 class="table-title"> Prénom</h3>
     <h3 class="table-title"> Email</h3>
-    <h3 class="table-title"> Phone</h3>
+    <h3 class="table-title"> Ville</h3>
+    <h3 class="table-title"> Gestion</h3>
 </div>
+<?php
 
-<div class="table-results">
-<!--  généré par js pour le moment faire bdd après -->
-</div>
+
+$manager = new UserManager();
+$userList = $manager->getLastTenUsers(ConnectionDbAdmin::getInstance()->connection); 
+
+echo "<table class='table-style'>";
+
+foreach($userList as $user){
+    echo "<tr>
+            <td>{$user->getNom()}</td>
+            <td>{$user->getPrenom()}</td>
+            <td>{$user->getEmail()}</td>
+            <td>{$user->getVille()->getNom()}</td>
+            <td> Supprimer </td>
+        </tr>";
+}
+
+?>
 

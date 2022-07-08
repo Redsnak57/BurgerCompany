@@ -1,4 +1,5 @@
 <?php
+$manager = new AdminManager();
 if(isset($_POST["email"],$_POST["password"],$_POST["cEmail"],$_POST["cPassword"])){
     if(!empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["cEmail"]) && !empty($_POST["cPassword"])){
         if($_POST["email"] != $_POST["cEmail"]){
@@ -6,7 +7,6 @@ if(isset($_POST["email"],$_POST["password"],$_POST["cEmail"],$_POST["cPassword"]
         } elseif($_POST["password"] != $_POST["cPassword"]){
             echo "<p class='msg erreur'> Les mots de passe ne correspondent pas.</p>";
         } else {
-            $manager = new AdminManager();
             $admin = $manager->createAdmin($_POST);
             $manager->saveAdmin(ConnectionDbAdmin::getInstance()->connection, $admin);
         }
@@ -20,9 +20,10 @@ if(isset($_POST["email"],$_POST["password"],$_POST["cEmail"],$_POST["cPassword"]
 <h2 class="top-title"> Gestion des administrateurs </h2>
 <p class=trait-title></p>
 
-<h2> ajouter un administrateur </h2>
-<div class="container addAdmin">
+
+<div class="container-addAdmin">
     <div class="wrapper">
+    <h2> ajouter un administrateur </h2>
         <form action="" method="POST">
             <div class="row">
                 <i class="bi bi-envelope"></i>
@@ -45,26 +46,24 @@ if(isset($_POST["email"],$_POST["password"],$_POST["cEmail"],$_POST["cPassword"]
             </div>
         </form>
     </div>
+
+    <div class="wrapper">
+        <h2> Voir le(s) administrateur(s) </h2>
+
+        <?php
+
+        $adminList = $manager->getAdmins(ConnectionDbAdmin::getInstance()->connection);
+
+        echo "<table>";
+
+        foreach ($adminList as $admin) {
+        echo "<tr>
+            <td>{$admin->getEmail()}</td><br>
+        </tr>";
+
+        }
+
+        echo "</table>";
+        ?>
+    </div>
 </div>
-
-<h2> Voir le(s) administrateur(s) </h2>
-
-<?php
-
-$afficher_admin = new AfficherAdmin();
-$admin = $afficher_admin->afficherAdmin($bdd, $user);
-$afficher_admin->afficherAdmin(ConnectionDbAdmin::getInstance()->connection, $user);
-
-
-foreach ($affichageVehicule as $index) {
-echo "<tr>
-    <td>$index[email]</td>
-
-</tr>
-
-";
-
-}
-
-
-?>

@@ -1,13 +1,5 @@
 <?php 
 
-/**
- * Singleton
- * @param string $host
- * @param string $dbname
- * @param string $user
- * @param string $mdp
- * @param string $char
- */
 class ConnectionDbAdmin {
 
     public static $instance;
@@ -20,6 +12,7 @@ class ConnectionDbAdmin {
     public $connection;
 
 
+    
     private function __construct($host, $dbname, $user, $mdp, $char){
         $this->host = $host;
         $this->dbname = $dbname;
@@ -33,6 +26,14 @@ class ConnectionDbAdmin {
             }
     }
 
+    /**
+     * Singleton
+     * @param string $host
+     * @param string $dbname
+     * @param string $user
+     * @param string $mdp
+     * @param string $char
+     */
     public static function getInstance($host = "", $dbname = "", $user = "", $mdp = "", $char = "utf-8"){
         if(is_null(self::$instance)){
             self::$instance = new ConnectionDbAdmin($host, $dbname, $user, $mdp, $char);
