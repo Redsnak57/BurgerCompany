@@ -3,7 +3,7 @@
 <!-- search box -->
 <div class="input-control">
     <label for="search"><i class="bi bi-search"></i></label>
-    <input type="text" id="search" placeholder="Rechercher un utilisateur">
+    <input type="text" id="search" placeholder="Rechercher un utilisateur" onkeyup="search_client()">
 </div>
 <h2 class="main-title"> Utilisateur inscrit</h2>
 
@@ -15,18 +15,14 @@
     <h3 class="table-title"> Gestion</h3>
 </div>
 
-<div class="table-results">
-    <!-- resultat ramdon en js pour le moment + tard bdd -->
 <?php
-
-
 $manager = new UserManager();
 $userList = $manager->getUsers(ConnectionDbAdmin::getInstance()->connection); 
 
 echo "<table class='table-style'>";
 
 foreach($userList as $user){
-    echo "<tr>
+    echo "<tr class='resultatAffichage'>
             <td>{$user->getNom()}</td>
             <td>{$user->getPrenom()}</td>
             <td>{$user->getEmail()}</td>
@@ -38,3 +34,4 @@ foreach($userList as $user){
 
 ?>
 </div>
+

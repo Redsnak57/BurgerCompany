@@ -113,6 +113,6 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- <script src="../public/js/scripts.js"></script> -->
     <script src="../public/js/charts.js"></script>
-    <script src="../public/js/app.js"></script>
+    <script src="../public/js/searchClient.js"></script>
 </body>
 </html>
