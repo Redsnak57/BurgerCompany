@@ -99,7 +99,7 @@
 
 .vedettes .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17rem,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(12rem,1fr));
     padding: 3rem 1rem 5rem 1rem;
     gap: 1rem;
 }
@@ -171,4 +171,13 @@
     transform: rotate(45deg);
     top : 10px;
     right: -20px;
+}
+
+@media (max-width: 900px) {
+    
+}
+@media (max-width: 768px) {
+    .vedettes .container {
+        grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
+    }
 }
