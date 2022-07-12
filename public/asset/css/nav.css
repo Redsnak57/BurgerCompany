@@ -195,8 +195,7 @@ ul{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: rgba(43, 43, 43, 0.2);
-        backdrop-filter: blur(7px);
+        /* backdrop-filter: blur(7px); */
         width: 100%;
         height: 100vh;
         margin-left: -100%;
@@ -212,7 +211,7 @@ ul{
         margin-left: 0;
         z-index: 100;
         transition: .3s ease-in-out;
-        background: transparent;
+        background: rgb(167, 167, 167);
     }
 
     ul li {
@@ -256,6 +255,9 @@ ul{
 
 /*responsive footer*/
 @media(max-width: 767px){
+    ul.active-menu {
+        gap: 2rem;
+    }
   .footer-col{
     width: 50%;
     margin-bottom: 30px;

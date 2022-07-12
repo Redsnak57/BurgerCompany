@@ -5,12 +5,8 @@
     <div class="box">
             <span>
                 <?php
-                // $select_modele = $bdd->prepare("SELECT * FROM `user`");
-                // $select_modele->execute();
-                // $numbers_of_modele = $select_modele->rowCount();
-                // echo $numbers_of_modele
-                // $afficher_user = new Dashboard($user);
-                // $user = $afficher_user->getUser($bdd, $user);
+                // $afficher_user = new Dashboard();
+                // $user = $afficher_user->getUser($bdd);
                 // $user->getUser(ConnectionDbAdmin::getInstance()->connection, $user);
                 // echo $user;
                 ?>

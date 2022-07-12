@@ -52,6 +52,11 @@ class Admin {
         $this->email=$email;
     }
 
+    /* connection admin faux */ 
+    public function getConnectionAdminEmail(){
+        return $this->getEmail();
+    }
+
     /**
      * Récupère le password et le crypte 
      *

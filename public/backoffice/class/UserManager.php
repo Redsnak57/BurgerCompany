@@ -67,6 +67,10 @@ class UserManager {
 
         return $users;
     }
+
+    public function getUser(){
+        
+    }
 }
 
 

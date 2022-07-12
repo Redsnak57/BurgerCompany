@@ -25,6 +25,7 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
     <link rel="stylesheet" href="./asset/css/header.css">
     <link rel="stylesheet" href="./asset/css/inscription.css"> 
     <link rel="stylesheet" href="./asset/css/contact.css"> 
+    <link rel="stylesheet" href="./asset/css/mention.css"> 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -36,7 +37,7 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
         <div class='bx bx-menu' id='menu-icon'></div>
         <ul>    
             <img src=./asset/img/logo.png alt='Logo du site'> 
-            <li><a href=index.php?page=accueil class='menu active'>Accueil</a></li>
+            <li><a href=index.php?page=accueil class='menu'>Accueil</a></li>
             <li><a href=index.php?page=nosProduits class='menu'>Nos produits</a></li>
             <li><a href=index.php?page=contact class='menu'>Contact</a></li>
             <div class='buttons'>
@@ -64,6 +65,12 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
                 break;
             case "connection":
                 include("../vue/connection.php");
+                break;
+            case "mention":
+                include("../vue/mention.php");
+                break;
+            case "protection-donnees":
+                include("../vue/protection.php");
                 break;
             default:
                 include("../vue/accueil.php"); // Par défault page d'accueil
@@ -96,9 +103,8 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
                     <h4>Condition général de vente</h4>
                     <?php
                     echo "
-                        <li><a href=index.php?page=cgv>CGV</a></li>
-                        <li><a href=index.php?page=cgu>CGU</a></li>
-                        <li><a href=index.php?page=RGPD>RGPD</a></li>";
+                        <li><a href=index.php?page=mention>Mentions légales</a></li>
+                        <li><a href=index.php?page=protection-donnees>Politique de protection de données</a></li>";
                     ?>
                 </div>
                 <div class="footer-col">

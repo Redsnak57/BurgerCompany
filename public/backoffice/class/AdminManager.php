@@ -84,8 +84,24 @@ class AdminManager{
             $object = $this->makeAdmin($admin);
             array_push($admins, $object);
         }
-
         return $admins;
+    }
+
+    /* connection admin faux */ 
+    public function getConnectionAdmin(PDO $bdd, Admin $admin){
+        $connection = $bdd->prepare("SELECT * FROM `admin` WHERE email=:email");
+        $connection->bindValue(":email", getConnectionAdmin(), PDO::PARAM_STR);
+        $connection->execute();
+
+        $userBdd= $connection->fetch(PDO::FETCH_ASSOC);
+
+        if(password_verify($admin["password"], $userBdd["password"])){
+            $_SESSION["admin"] = $userBdd;
+            unset($_SESSION["admin"]["password"]);
+            header("Location:./vue/index.php");
+        } else {
+            return "<span> Mot de passe inccorect.</span>";
+        }    
     }
 }
 

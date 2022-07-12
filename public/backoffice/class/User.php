@@ -18,11 +18,12 @@ class User {
      * @param string $email
      * @param string $ville
      */
-    public function __construct($ID = "", $nom="", $prenom="", $email ="", $ville="" ){
+    public function __construct($ID = "", $nom="", $prenom="", $email ="", $ville=""){
         $this->ID = $ID;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
+
         /**
          * Si la ville est remplis alors on appel VilleManager
          */
