@@ -1,10 +1,14 @@
 <?php
-
 /* Création autoLoader */ 
 function loadClass($class){
     require('../class/'.$class.'.php');
 }
 spl_autoload_register('loadClass');
+
+session_start();
+if(isset($_SESSION["admin"])){
+    $admin = $_SESSION["admin"];
+}
 
 
 /* Appel de la BDD */
@@ -13,24 +17,31 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burger Company</title>
     <!-- Css config-->
-    <link rel="stylesheet" href="../public/css/nav_admin.css">
-    <link rel="stylesheet" href="../public/css/responsive.css">
+    <link rel="stylesheet" href="./css/nav_admin.css">
+    <link rel="stylesheet" href="./css/responsive.css">
     <!--  css -->
-    <link rel="stylesheet" href="../public/css/dashboard.css">
-    <link rel="stylesheet" href="../public/css/utilisateur.css">
-    <link rel="stylesheet" href="../public/css/gestionAdmin.css">
-    <!-- cdn -->
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/utilisateur.css">
+    <link rel="stylesheet" href="./css/gestionAdmin.css">
+    <!-- css connection Admin -->
+    <link rel="stylesheet" href="./css/connectionAdmin.css">
+    <!-- cnd icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
-
+    <?php
+    if(isset($_SESSION["admin"])){
+        if($_SESSION["admin"]){
+    ?>
     <!-- Nav gauche du site grid colum 1  -->
     <div class="global-container">
         <div class="hamburger-nav" id="menu-icon">
@@ -66,7 +77,7 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
                 <i class="bi bi-gear"></i>
                 <span class="nav-links">Paramètres</span>
             </a>
-            <a href="./deconnection.php" class="block-link">
+            <a href="../vue/deconnection.php" class="block-link">
                 <i class="bi bi-box-arrow-right"></i>
                 <span class="nav-links"> Déconnection </span>
             </a>
@@ -80,40 +91,49 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
                 if(isset($_GET["page"])){
                     switch($_GET["page"]){
                         case "dashboard":
-                            include("./dashboard.php");
+                            include("../vue/dashboard.php");
                             break;
                         case "utilisateur":
-                            include("./utilisateur.php");
+                            include("../vue/utilisateur.php");
                             break;
                         case "gestionAdmin":
-                            include("./gestionAdmin.php");
+                            include("../vue/gestionAdmin.php");
                             break;
                         case "produits":
-                            include("./produits.php");
+                            include("../vue/produits.php");
                             break;
                         case "commandes":
-                            include("./commandes.php");
+                            include("../vue/commandes.php");
                             break;
                         case "parametres":
-                            include("./parametres.php");
+                            include("../vue/parametres.php");
                             break;
                         default:
-                            include("./dashboard.php"); // Par défault page d'accueil
+                            include("../vue/dashboard.php"); // Par défault page d'accueil
                     }
                 } else {
-                    include("./dashboard.php"); // si lien n'existe pas
+                    include("../vue/dashboard.php"); // si lien n'existe pas
                 }
             ?>
 
         </main>
     </div>
+    <?php
+        }
+    }
 
+    if(!isset($_SESSION["admin"])){
+        include "../vue/connectionAdmin.php";
+    } 
+    ?>
+
+    
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <script src="../public/js/scripts.js"></script> -->
-    <script src="../public/js/charts.js"></script>
-    <script src="../public/js/navAdmin.js"></script>
-    <script src="../public/js/searchClient.js"></script>
+    <!-- <script src="./js/scripts.js"></script> -->
+    <script src="./js/charts.js"></script>
+    <script src="./js/navAdmin.js"></script>
+    <script src="./js/searchClient.js"></script>
 </body>
 </html>

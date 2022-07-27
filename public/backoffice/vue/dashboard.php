@@ -51,8 +51,9 @@
     <h3 class="table-title"> Ville</h3>
     <h3 class="table-title"> Gestion</h3>
 </div>
-<?php
 
+
+<?php
 
 $manager = new UserManager();
 $userList = $manager->getLastTenUsers(ConnectionDbAdmin::getInstance()->connection); 
@@ -60,12 +61,14 @@ $userList = $manager->getLastTenUsers(ConnectionDbAdmin::getInstance()->connecti
 echo "<table class='table-style'>";
 
 foreach($userList as $user){
-    echo "<tr>
+    echo "<tr class='resultatAffichage'>
             <td>{$user->getNom()}</td>
             <td>{$user->getPrenom()}</td>
             <td>{$user->getEmail()}</td>
             <td>{$user->getVille()->getNom()}</td>
-            <td> Supprimer </td>
+            <td class='floatingBtn'><button>
+                <a href=index.php?page=utilisateur&supUser=".$user->getID()." class=supUser>Supprimer
+            </button></td>
         </tr>";
 }
 

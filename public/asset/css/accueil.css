@@ -26,6 +26,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
+    background-color: var(--important);
 }
 
 .header .container .commander{
@@ -99,8 +100,9 @@
 
 .vedettes .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem,1fr));
-    padding: 3rem 1rem 5rem 1rem;
+    /* grid-template-columns: repeat(auto-fit, minmax(12rem,1fr)); */
+    grid-template-columns: repeat(4,1fr);
+    padding: 2rem 1rem 2rem 1rem;
     gap: 1rem;
 }
 
@@ -174,10 +176,25 @@
 }
 
 @media (max-width: 900px) {
+    .vedettes .container {
+        grid-template-columns: repeat(2,1fr);
+    }
     
 }
 @media (max-width: 768px) {
     .vedettes .container {
-        grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .step .container {
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
+    .step .container .box p {
+        padding: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .vedettes .container {
+        grid-template-columns: 1fr;
     }
 }

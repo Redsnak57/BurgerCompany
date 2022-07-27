@@ -19,28 +19,30 @@
 
 }
 
-.container-addAdmin {
-    display: grid;
-    gap: 1rem;
-    grid-auto-rows: auto;
+
+.connection {
+    max-width: 440px;
+    padding: 1rem 2rem;
+    margin: 100px auto;
+    background: rgb(241, 241, 241);
 }
 
 .wrapper{
     width: 100%;
     background: var(--couleur-body);
     border-radius: 8px;
-    margin-top: 1.5rem;
-    height: auto;
 }
 
-.wrapper h2 {
-    color: var(--txt-body);
-    text-align: center;
+.wrapper .title {
+    line-height: 80px;
+    background: var(--btn-hover);
+    padding-left: 20px;
+    border-radius: 5px 5px 0 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--couleur-body);
 }
 
-.wrapper table {
-    margin: auto;
-}
 .wrapper form {
     padding: 30px 20px 25px 20px;
 }
@@ -69,6 +71,7 @@ form .row input:focus {
 .wrapper form .row i {
     position: absolute;
     width: 47px;
+    left: 0;
     height: 100%;
     color: var(--ecriture-nav);
     font-size: 1.5rem;
@@ -89,28 +92,24 @@ form .row input:focus {
     cursor: pointer;
 }
 
-.msg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    position: relative;
-    top: 100px;
+.wrapper form .pass a {
+    color: var(--btn-hover);
+    text-decoration: none;
 }
 
-.succes {
-    color: green;
+.wrapper form .pass a:hover {
+    text-decoration: underline;
 }
 
-.erreur {
-    color: red;
+@keyframes button-push {
+    50% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
-/* Paramètre */
-.infoActuel {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 1rem;
-} 
-
-
+.wrapper .button:hover {
+    animation: button-push 0.7s linear 1;
+}

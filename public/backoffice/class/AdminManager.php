@@ -87,21 +87,45 @@ class AdminManager{
         return $admins;
     }
 
-    /* connection admin faux */ 
-    public function getConnectionAdmin(PDO $bdd, Admin $admin){
+    /**
+     * Connection d'un admin. Cherche dans la table admin l'email et vérifie le mot de passe écris
+     *
+     * @param PDO $bdd
+     * @param array $admin
+     * @return void
+     */
+    public function getConnectionAdmin(PDO $bdd, array $admin){
+        if(isset($admin["email"], $admin["password"])){
+            $admin = new Admin($admin["email"],$admin["password"]);
+        }
         $connection = $bdd->prepare("SELECT * FROM `admin` WHERE email=:email");
-        $connection->bindValue(":email", getConnectionAdmin(), PDO::PARAM_STR);
+        $connection->bindValue(":email", $admin->getEmail(), PDO::PARAM_STR);
         $connection->execute();
 
         $userBdd= $connection->fetch(PDO::FETCH_ASSOC);
 
-        if(password_verify($admin["password"], $userBdd["password"])){
-            $_SESSION["admin"] = $userBdd;
-            unset($_SESSION["admin"]["password"]);
-            header("Location:./vue/index.php");
+        if(password_verify($admin->getPassword(), $userBdd["password"])){
+            $_SESSION["admin"] = $admin;
+            $_SESSION["admin"]->unsetPassword();
+            header("Location:./index.php");
         } else {
             return "<span> Mot de passe inccorect.</span>";
         }    
+    }
+
+    /*affichage email + pass admin paramètre */
+    /* faux */ 
+    public function getInfoSettings(PDO $bdd) {
+        $str = 'SELECT * FROM `admin`';
+        $query = $bdd->query($str);
+        $query->fetchAll();
+
+        return $query;
+    }
+
+    /* faire changement settings admin */ 
+    public function getModificationAdmin(PDO $bdd, Admin $admin){
+        
     }
 }
 

@@ -12,7 +12,7 @@ class Admin {
      * @param string $email
      * @param string $password
      */
-    public function __construct($ID = "", $email ="", $password =""){
+    public function __construct($email ="", $password ="", $ID = ""){
     
         $this->ID = $ID;
         $this->email = $email;
@@ -52,11 +52,6 @@ class Admin {
         $this->email=$email;
     }
 
-    /* connection admin faux */ 
-    public function getConnectionAdminEmail(){
-        return $this->getEmail();
-    }
-
     /**
      * Récupère le password et le crypte 
      *
@@ -67,7 +62,9 @@ class Admin {
         $this->password = password_hash($password, PASSWORD_BCRYPT);
     }
 
-
+    public function unsetPassword(){
+        $this->password= null;
+    }
 }
 
 ?>

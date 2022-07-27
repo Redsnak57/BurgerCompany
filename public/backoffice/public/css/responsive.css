@@ -1,33 +1,80 @@
 /* Responsive */
 
 @media screen and (max-width : 1000px) {
+    /* passe de grid à block */ 
     .global-container {
-        grid-template-columns: 1fr;
+        display: block;
     }
+    /*menu */
     .side-nav {
+        display: none;
+    }
+    .nav-logo {
         display: none;
     }
     .hamburger-nav {
         display: inline-block;
     }
+    .side-nav.active-menu {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        z-index: 100;
+        transition: .3s ease-in-out;
+        background: var(--important);
+    }
+    /* fin menu */
+    /*main */ 
     .main-content {
         grid-column: 1;
     }
 }
 
 @media screen and (max-width : 700px) {
+    /* affichage des utilisateurs */
     .table {
         display: block;
     }
     .table-title {
         display: none;
     }
-    .table-item {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 40px;
-        margin-bottom: 50px;
-        height: auto;
-        text-align: center;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+    .table-style {
+        padding-inline: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .resultatAffichage {
+        margin-top: 5px;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #ddd;
+        position: relative;
+        padding-bottom: 90px;
+    }
+    /* le td qui a le btn */
+    .resultatAffichage > .floatingBtn {
+        margin-top: 40px;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
+        align-self: flex-end;
+    }
+
+    .resultatAffichage > td {
+        flex: 1;
+        min-width: 100%;
+        padding: 5px;
+        width: unset;
+        display: flex;
+        word-wrap: break-word;
+        justify-content: center;
+        align-items: center;
+        border: none;
     }
 }

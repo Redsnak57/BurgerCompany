@@ -94,3 +94,35 @@
 .box .contact .horraire p:nth-child(7){
     border: none;
 }
+
+@media(max-width: 768px){
+    .contactUs {
+        padding: 40px 10px;
+    }
+
+    .box {
+        display: block;
+    }
+
+    .box .contact {
+        margin-top: 20px;
+    }
+    .box .contact .horraire p {
+        width: 100%;
+        margin: auto;
+        padding: 15px
+    }
+
+    .reseaux a i {
+        font-size: 1rem;
+    }
+
+    .infoBox {
+        font-size: 0.8rem;
+    }
+}
+
+@media(max-width: 425px){
+
+}
+

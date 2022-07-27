@@ -18,7 +18,7 @@ class UserManager {
     }
 
     /**
-     * Undocumented function
+     * Retourne un object User
      *
      * @param array $array
      * @return User
@@ -68,10 +68,46 @@ class UserManager {
         return $users;
     }
 
-    public function getUser(){
-        
+    /**
+     * Supprimer un utilisateur par l'ID, qui a été récupéré via suppUser
+     *
+     * @param PDO $bdd
+     * @param integer $ID
+     * @return void
+     */
+    public function suppUserByID(PDO $bdd, int $ID){
+        $req = "SELECT * FROM user WHERE ID=:ID";
+        $query = $bdd -> prepare($req);
+        $query -> bindValue(":ID", $ID, PDO::PARAM_INT);
+        $query->execute();
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+
+        $user = $this->makeUser($user);
+        $this->suppUser($bdd, $user);
     }
-}
+
+
+    /**
+     * Supprimer l'utilisateur 
+     *
+     * @param PDO $bdd
+     * @param User $user
+     * @return void
+     */
+    public function suppUser(PDO $bdd, User $user) {
+        $reqDelete ="DELETE FROM user WHERE ID=:ID";
+        $query = $bdd -> prepare($reqDelete);
+        $query -> bindValue(":ID", $user->getID(), PDO::PARAM_INT);
+
+        if($query -> execute()){
+            header("Location:./index.php?page=utilisateur");
+        } else {
+            echo "Une erreur c'est produite.";
+        }
+    }
+
+
+}  
 
 
 ?>

@@ -17,7 +17,12 @@
 
 <?php
 $manager = new UserManager();
-$userList = $manager->getUsers(ConnectionDbAdmin::getInstance()->connection); 
+
+if(isset($_GET["supUser"])){
+    $manager->suppUserByID($bdd->connection, $_GET["supUser"]);
+}
+
+$userList = $manager->getUsers($bdd->connection); 
 
 echo "<table class='table-style'>";
 
@@ -27,7 +32,9 @@ foreach($userList as $user){
             <td>{$user->getPrenom()}</td>
             <td>{$user->getEmail()}</td>
             <td>{$user->getVille()->getNom()}</td>
-            <td> Supprimer </td>
+            <td class='floatingBtn'><button>
+                <a href=index.php?page=utilisateur&supUser=".$user->getID()." class=supUser>Supprimer
+            </button></td>
         </tr>";
 }
 

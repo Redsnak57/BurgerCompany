@@ -19,23 +19,20 @@
 
 }
 
-body {
-    background: var(--important);
-}
 
-.container {
+.containerLogAdmin {
     max-width: 440px;
     padding: 0 20px;
     margin: 170px auto;
 }
 
-.wrapper{
+.containerLogAdmin .containerLogAdmin__wrapper{
     width: 100%;
     background: var(--couleur-body);
     border-radius: 8px;
 }
 
-.wrapper .title {
+.containerLogAdmin .containerLogAdmin__wrapper .title {
     line-height: 80px;
     background: var(--btn-hover);
     padding-left: 20px;
@@ -45,17 +42,17 @@ body {
     color: var(--couleur-body);
 }
 
-.wrapper form {
+.containerLogAdmin .containerLogAdmin__wrapper form {
     padding: 30px 20px 25px 20px;
 }
 
-.wrapper form .row {
+.containerLogAdmin .containerLogAdmin__wrapper form .row {
     position: relative;
     height: 45px;
     margin-bottom: 15px;
 }
 
-.wrapper form .row input {
+.containerLogAdmin .containerLogAdmin__wrapper form .row input {
     height: 100%;
     width: 100%;
     padding-left: 60px;
@@ -70,7 +67,7 @@ form .row input:focus {
     box-shadow: inset 0px 0px 1px 1px var(--important);
 }
 
-.wrapper form .row i {
+.containerLogAdmin .containerLogAdmin__wrapper form .row i {
     position: absolute;
     width: 47px;
     height: 100%;
@@ -84,7 +81,7 @@ form .row input:focus {
     justify-content: center;
 }
 
-.wrapper form .button input {
+.containerLogAdmin .containerLogAdmin__wrapper form .button input {
     padding-left: 0px;
     background: var(--important);
     border: 1px solid var(--important);
@@ -93,11 +90,11 @@ form .row input:focus {
     cursor: pointer;
 }
 
-.wrapper form .pass a {
+.containerLogAdmin .containerLogAdmin__wrapper form .pass a {
     color: var(--btn-hover);
     text-decoration: none;
 }
 
-.wrapper form .pass a:hover {
+.containerLogAdmin .containerLogAdmin__wrapper form .pass a:hover {
     text-decoration: underline;
 }

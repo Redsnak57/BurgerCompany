@@ -26,6 +26,8 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
     <link rel="stylesheet" href="./asset/css/inscription.css"> 
     <link rel="stylesheet" href="./asset/css/contact.css"> 
     <link rel="stylesheet" href="./asset/css/mention.css"> 
+    <link rel="stylesheet" href="./asset/css/nosProduits.css"> 
+    <link rel="stylesheet" href="./asset/css/connection.css"> 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -128,5 +130,14 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
 
     <script src="./asset/js/nav.js"></script>
     <script src="./asset/js/inscription.js"></script>
+    <script src="./asset/js/nosProduits.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                $('.image').css("opacity", 1 - $(window).scrollTop()/1100)
+            })
+        })
+    </script>
 </body>
 </html>

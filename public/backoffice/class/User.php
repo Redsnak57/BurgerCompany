@@ -99,5 +99,6 @@ class User {
         $this->villeInfo = $ville;
     }
 
+
 }
 ?>

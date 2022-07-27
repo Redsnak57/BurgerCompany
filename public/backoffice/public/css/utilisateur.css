@@ -58,3 +58,16 @@
     color : #838f9f;
     font-size: 16px;
 }
+
+.resultatAffichage button {
+    border: none;
+   
+}
+.supUser {
+    background: var(--btn-action);
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--ecriture-nav);
+    font-weight: 800;
+}

@@ -1,7 +1,6 @@
 <section class="header">
     <div class="container">
-        <div class="image">
-        </div>
+        <div class="image"></div>
         <div class="commander">
             <button class="btn commander">
                 <?php 
@@ -33,45 +32,45 @@
 </section>
 
 <section class="vedettes">
-<div class="heading">
-    <p>Découvres les <span> vedettes du moment</span></p>
-</div>
-<div class="container">
-    <div class="box promo">
-        <p> Double cheese Burger</p>
-        <img src="../public//asset/img/double_chesse.png" alt="">
-        <div class="acheter">
-            <i class="gauche_i fa-solid fa-info"></i>
-            <i class="droite_i fa-solid fa-basket-shopping"></i>
-            <p class="prix_promo">5.99€</p>
-        </div>
+    <div class="heading">
+        <p>Découvres les <span> vedettes du moment</span></p>
     </div>
-    <div class="box promo">
-        <p> Double cheese Burger</p>
-        <img src="../public//asset/img/double_chesse.png" alt="">
-        <div class="acheter">
-            <i class="gauche_i fa-solid fa-info"></i>
-            <i class="droite_i fa-solid fa-basket-shopping"></i>
-            <p class="prix_promo">5.99€</p>
+    <div class="container">
+        <div class="box promo">
+            <p> Double cheese Burger</p>
+            <img src="../public//asset/img/double_chesse.png" alt="">
+            <div class="acheter">
+                <i class="gauche_i fa-solid fa-info"></i>
+                <i class="droite_i fa-solid fa-basket-shopping"></i>
+                <p class="prix_promo">5.99€</p>
+            </div>
         </div>
-    </div>
-    <div class="box">
-        <p> Double cheese Burger</p>
-        <img src="../public//asset/img/double_chesse.png" alt="">
-        <div class="acheter">
-            <i class="gauche_i fa-solid fa-info"></i>
-            <i class="droite_i fa-solid fa-basket-shopping"></i>
-            <p class="prix">5.99€</p>
+        <div class="box promo">
+            <p> Double cheese Burger</p>
+            <img src="../public//asset/img/double_chesse.png" alt="">
+            <div class="acheter">
+                <i class="gauche_i fa-solid fa-info"></i>
+                <i class="droite_i fa-solid fa-basket-shopping"></i>
+                <p class="prix_promo">5.99€</p>
+            </div>
         </div>
-    </div>
-    <div class="box">
-        <p> Double cheese Burger</p>
-        <img src="../public//asset/img/double_chesse.png" alt="">
-        <div class="acheter">
-            <i class="gauche_i fa-solid fa-info"></i>
-            <i class="droite_i fa-solid fa-basket-shopping"></i>
-            <p class="prix">5.99€</p>
+        <div class="box">
+            <p> Double cheese Burger</p>
+            <img src="../public//asset/img/double_chesse.png" alt="">
+            <div class="acheter">
+                <i class="gauche_i fa-solid fa-info"></i>
+                <i class="droite_i fa-solid fa-basket-shopping"></i>
+                <p class="prix">5.99€</p>
+            </div>
         </div>
-    </div>
-</div> 
+        <div class="box">
+            <p> Double cheese Burger</p>
+            <img src="../public//asset/img/double_chesse.png" alt="">
+            <div class="acheter">
+                <i class="gauche_i fa-solid fa-info"></i>
+                <i class="droite_i fa-solid fa-basket-shopping"></i>
+                <p class="prix">5.99€</p>
+            </div>
+        </div>
+    </div> 
 </section>

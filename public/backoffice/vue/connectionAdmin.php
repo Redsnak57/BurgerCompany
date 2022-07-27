@@ -1,10 +1,18 @@
 <?php
 
+if(isset($_POST["email"],$_POST["password"])){
+    if(!empty($_POST["email"]) && !empty($_POST["password"])) {
+        $manager = new AdminManager();
+        $admin = $manager->getConnectionAdmin(ConnectionDbAdmin::getInstance()->connection, $_POST);
+    } else {
+        echo "<span>Merci de remplir tout les champs.</span>";
+    }
+}
 
 ?>
-
-<div class="container">
-    <div class="wrapper">
+<div class="global">
+<div class="containerLogAdmin">
+    <div class="containerLogAdmin__wrapper">
         <div class="title"><span> Connection administrateur</span></div>
         <form action="" method="POST">
             <div class="row">
@@ -21,5 +29,7 @@
             <div class="pass"><a href="#">Mot de passe oublié ?</a></div>
         </form>
     </div>
-</div>  
+</div>
+</div>
+  
 
