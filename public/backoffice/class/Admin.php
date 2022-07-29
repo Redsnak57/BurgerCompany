@@ -37,16 +37,6 @@ class Admin {
     private function setID($ID){
         $this->ID=$ID;
     }
-    public function getID(){
-        return $this->ID;
-    }
-
-    public function getEmail(){
-        return $this->email;
-    }
-    public function getPassword(){
-        return $this->password;
-    }
 
     public function setEmail($email){
         $this->email=$email;
@@ -61,6 +51,18 @@ class Admin {
     public function setPassword($password){
         $this->password = password_hash($password, PASSWORD_BCRYPT);
     }
+    
+    public function getID(){
+        return $this->ID;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+    public function getPassword(){
+        return $this->password;
+    }
+
 
     public function unsetPassword(){
         $this->password= null;

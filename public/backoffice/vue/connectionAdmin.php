@@ -4,6 +4,7 @@ if(isset($_POST["email"],$_POST["password"])){
     if(!empty($_POST["email"]) && !empty($_POST["password"])) {
         $manager = new AdminManager();
         $admin = $manager->getConnectionAdmin(ConnectionDbAdmin::getInstance()->connection, $_POST);
+
     } else {
         echo "<span>Merci de remplir tout les champs.</span>";
     }

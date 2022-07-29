@@ -1,5 +1,5 @@
-Est-ce que bien fait new site backoffice ?
-
-new class dans backoffcie donc new connection pdo
-
-Dashboard + affichage user de faux, très faux 
+pb client connection
+mettre les switch case dans un if isset session ? car sinon une fois connecter je peux inscription
+new Categorie 
+affichage Dashboard
+recup settings 

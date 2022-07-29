@@ -1,6 +1,6 @@
 /* Responsive */
 
-@media screen and (max-width : 1000px) {
+@media screen and (max-width : 1024px) {
     /* passe de grid à block */ 
     .global-container {
         display: block;
@@ -24,13 +24,15 @@
         background: var(--important);
     }
     /* fin menu */
+
     /*main */ 
     .main-content {
         grid-column: 1;
     }
+
 }
 
-@media screen and (max-width : 700px) {
+@media screen and (max-width : 768px) {
     /* affichage des utilisateurs */
     .table {
         display: block;
@@ -49,7 +51,6 @@
     .resultatAffichage {
         margin-top: 5px;
         width: 100%;
-        aspect-ratio: 1 / 1;
         display: flex;
         flex-wrap: wrap;
         border: 1px solid #ddd;
@@ -76,5 +77,14 @@
         justify-content: center;
         align-items: center;
         border: none;
+    }
+
+    /* produits */
+    .containerProduits {
+        grid-template-columns: 1fr!important;
+    }
+
+    .box__titre {
+        font-size: 1.4rem!important;
     }
 }

@@ -30,6 +30,7 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/utilisateur.css">
     <link rel="stylesheet" href="./css/gestionAdmin.css">
+    <link rel="stylesheet" href="./css/produits.css">
     <!-- css connection Admin -->
     <link rel="stylesheet" href="./css/connectionAdmin.css">
     <!-- cnd icons -->

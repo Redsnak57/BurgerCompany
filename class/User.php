@@ -11,7 +11,7 @@ class User{
     private $numeroAdresse;
     private $ID_ville;
 
-    public function __construct($ID = '', $nom = '', $prenom = '', $email = '', $password = '', $rueAdresse = '', $numeroAdresse = '', $ville = ''){
+    public function __construct($email = '', $password = '', $ID = '', $nom = '', $prenom = '',  $rueAdresse = '', $numeroAdresse = '', $ville = ''){
         $this->ID = $ID;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -95,5 +95,9 @@ class User{
 
     public function setID_ville($ID_ville){
         $this->ID_ville = $ID_ville;
+    }
+
+    public function unsetPassword(){
+        $this->password = null;
     }
 }

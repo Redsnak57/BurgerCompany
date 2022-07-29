@@ -85,13 +85,57 @@ nav ul li a {
     font-weight: 800;
 }
 
+.buttons-connecte {
+    display: flex;
+}
 
-/* nav active*/
-/* .active {
+.buttons-connecte .bag-icon, 
+.buttons-connecte .user-icon {
+    font-size: 1.785rem;
+    background: transparent;
+}
+
+/* Ouverture box pour MAJ profil ou deconnection */ 
+.profil {
+    position: absolute;
+    right: 1%;
+    -webkit-box-shadow: 0px 5px 6px 3px rgba(0,0,0,0.5); 
+    box-shadow: 0px 5px 6px 3px rgba(0,0,0,0.5);
+    background: var(--couleur-body);
+    border-radius: 8px;
+    padding: 2rem 0;
+    width: 12rem;
+    display: none;
+    animation: fadeIn .3s linear;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: translateY(1.2rem);
+    }
+}
+
+.profil .buttonsSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.profil .buttonsSettings .monProfil {
+    background: var(--important);
+}
+
+.profil .buttonsSettings .monProfil:hover {
     background: var(--btn-hover);
-    border-radius: 20px;
-    padding: 1rem;
-} */
+}
+
+.profil.active {
+    display: inline-block;
+}
+
 
 /* footer */ 
 .container{
@@ -187,6 +231,11 @@ ul{
 /* responsive nav */ 
  
 @media(max-width : 900px){
+    .buttons {
+        position: unset;
+        display: flex;
+        flex-direction: column;
+    }
     ul  {
         top: 0;
         left: 0; 
@@ -212,7 +261,7 @@ ul{
         margin-left: 0;
         z-index: 100;
         transition: .3s ease-in-out;
-        background: rgb(188 188 188);
+        background: var(--important);
     }
 
     ul li {
@@ -227,16 +276,32 @@ ul{
     #menu-icon {
         display: inline-block;
         position: absolute;
-        right: 15px;
         z-index: 400;
         font-size: 3rem;
         cursor: pointer;
+        font-weight: 800;
 
     }
-    .buttons {
-        position: relative;
-        text-align: center;
+
+    /* Bouton pour bag et user profil + profil*/ 
+    .buttons-connecte {
+        z-index: 5;
+        position: absolute;
+        color: var(--important);
+        right: 0;
     }
+
+    .buttons-connecte .bag-icon,
+    .buttons-connecte .user-icon {
+        color: var(--important);
+    }
+
+    .profil {
+        top : 10%;
+    
+    }
+
+    /* fin bouton bg et user */
 
     .buttons a {
         color: var(--ecriture-nav);
@@ -244,6 +309,7 @@ ul{
     }
     .buttons .connection {
         background : none;
+        margin: unset;
     }
 
     .header .container .heading {

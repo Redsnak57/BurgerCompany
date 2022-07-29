@@ -1,10 +1,14 @@
 <?php
-
 /* Création autoLoader */ 
 function loadClass($class){
     require('../class/'.$class.'.php');
 }
 spl_autoload_register('loadClass');
+
+session_start();
+if(isset($_SESSION["user"])){
+    $user = $_SESSION["user"];
+}
 
 /* Appel de la BDD */
 $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
@@ -34,6 +38,9 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
 </head>
 <body>
     <?php
+
+    // Utilisateur non connecté 
+    if(!isset($user)){
     echo"
     <nav>
         <div class='bx bx-menu' id='menu-icon'></div>
@@ -48,6 +55,35 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
             </div>
         </ul>
     </nav>";
+    }
+
+    // Utilisateur connecté 
+    if(isset($user)){
+    echo"
+    <nav>
+        <div class='bx bx-menu' id='menu-icon'></div>
+        <ul>    
+            <img src=./asset/img/logo.png alt='Logo du site'> 
+            <li><a href=index.php?page=accueil class='menu'>Accueil</a></li>
+            <li><a href=index.php?page=nosProduits class='menu'>Nos produits</a></li>
+            <li><a href=index.php?page=contact class='menu'>Contact</a></li>
+        </ul>
+        <div class='buttons-connecte'>
+            <button class='btn bag-icon'><i class='bx bxs-cart' id='user-bag'></i></button>
+            <button class='btn user-icon'><i class='bx bxs-user' id='user-profil'></i></button>
+        </div>
+    </nav>";
+
+    ?>
+    <div class="profil">
+        <div class="buttonsSettings">
+            <button class="btn monProfil">Mon profil</button>
+            <button class="btn deconnection"><a href="../vue/deconnection.php">Deconnection</a></button>
+        </div>
+    </div>
+    <?php
+    
+    }
 
 
     //redirection page 
@@ -79,7 +115,8 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
         }
     } else {
         include("../vue/accueil.php"); // si lien n'existe pas
-    }
+    }   
+
     ?>
 
   

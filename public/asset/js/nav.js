@@ -1,24 +1,26 @@
-// Add active class to the current button (highlight it)
-// var header = document.getElementById("nav");
-// var menu = header.getElementsByClassName("menu");
-
-// for (var i = 0; i < menu.length; i++) {
-//   menu[i].addEventListener("click", function() {
-//   var current = document.getElementsByClassName("active");
-//   current[0].className = current[0].className.replace("active", "");
-//   this.className += "active";
-//   });
-// }
-
 // Menu hamburger
+// definition des variables 
 const menuHamburger = document.querySelector("#menu-icon");
 const navbar = document.querySelector("ul");
 
+// lors d'un clic sur #menu-icon, on met navbar en active
 menuHamburger.addEventListener("click",() => {
     navbar.classList.toggle("active-menu")
 })
 
-// Quitte le menu si scroll 
+// Affiche les options utilisateurs lors du clic 
+// definition des variables 
+let profil = document.querySelector('.profil');
+let toggle = document.querySelector("#user-profil");
+
+// lors d'un clic sur #user-profil, on met profil en active
+toggle.addEventListener("click", () => {
+    profil.classList.toggle("active");
+})
+
+// Quitte le menu si + options utilisateur si scroll 
 window.onscroll =() => {
     navbar.classList.remove("active-menu");
+    profil.classList.remove("active");
 }
+

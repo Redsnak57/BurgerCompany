@@ -63,7 +63,7 @@
     border: none;
    
 }
-.supUser {
+.btn {
     background: var(--btn-action);
     padding: 1rem;
     border-radius: 8px;

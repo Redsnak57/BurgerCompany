@@ -33,7 +33,7 @@ foreach($userList as $user){
             <td>{$user->getEmail()}</td>
             <td>{$user->getVille()->getNom()}</td>
             <td class='floatingBtn'><button>
-                <a href=index.php?page=utilisateur&supUser=".$user->getID()." class=supUser>Supprimer
+                <a href=index.php?page=utilisateur&supUser=".$user->getID()." class=btn>Supprimer
             </button></td>
         </tr>";
 }
