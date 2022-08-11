@@ -26,6 +26,7 @@
 }
 
 
+
 /* hamburger pour responsive */ 
 .hamburger-nav {
     display: none;
@@ -41,12 +42,53 @@
 
 /* Nav  partie gauche*/
 .side-nav {
+    transition: all 1500ms ease-in-out;
     position: relative;
     position: fixed;
     width: 250px;
     height: 100%;
     background: var(--important);
 }
+
+.side-nav #navToggle{
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.side-nav #navToggle div{
+    width: 30%;
+    height: 4px;
+    background-color: white;
+    border: 1px solid white;
+    transition: all 1100ms ease-in-out;
+    transform-origin: center;
+}
+
+.side-nav #navToggle.active>#haut{
+    transform: rotate(135deg) translateY(-9px);
+}
+
+.side-nav #navToggle.active>#bas{
+    transform: rotate(-135deg) translateY(9px);
+}
+
+.side-nav.closedNav #navToggle div{
+    transform: rotate(0deg);
+}
+
+.side-nav.closedNav{
+    transition: all 1500ms ease-in-out;
+    max-width: 70px;
+}
+
 .nav-logo {
     display: flex;
     justify-content: center;
@@ -79,6 +121,11 @@
 
 .nav-links {
     margin-left: 14px;
+    transition: all 600ms ease-in-out;
+}
+
+.closedNav .nav-links{
+    display: none;
 }
 
 /* main-content partie droite du site */

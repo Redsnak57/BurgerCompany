@@ -10,3 +10,11 @@ menuHamburger.addEventListener("click",() => {
 window.onscroll =() => {
     navbar.classList.remove("active-menu");
 }
+
+function toggleNav(){
+    nav = document.querySelector('.side-nav')
+    toggle = document.querySelector('#navToggle')
+
+    nav.classList.toggle('closedNav')
+    toggle.classList.toggle('active')
+}
