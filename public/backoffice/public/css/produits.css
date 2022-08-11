@@ -1,6 +1,23 @@
 .containerProduits {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "categorie produit" "tva produit" "promo produit";
+    gap: 20px;
+}
+
+.produit {
+    grid-area: produit;
+}
+
+.categorie {
+    grid-area: categorie;
+}
+
+.tva {
+    grid-area: tva;
+}
+
+.promo {
+    grid-area: promo;
 }
 
 .box__titre {
@@ -11,14 +28,12 @@
 }
 
 .containerProduits__box {
-    margin-top: 1rem;
     -webkit-box-shadow: 3px 5px 12px -3px #00000C; 
     box-shadow: 3px 5px 12px -3px #00000C;
     background: var(--couleur-body); 
     border-radius: 1rem;
-    padding: 2rem 0;
+    padding: 0 0 3rem 0;
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
     align-items: center;
     gap: 2rem;
@@ -28,9 +43,10 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 70%;
 }
 
-.containerProduits form input {
+.containerProduits form input, select {
     outline: none;
     border: none;
     padding: 1rem;   
@@ -40,7 +56,54 @@
     cursor: pointer;
 }
 
-.containerProduits form input:focus {
+.containerProduits form input:focus, textarea:focus, select:focus {
     border-color: var(--important);
     box-shadow: inset 0px 0px 1px 1px var(--important);
+}
+
+
+.containerProduits #description_produit  {
+    resize: none;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    height: 150px;
+}
+
+/*checkbox dispo */
+#dispo {
+    margin-left: 2rem;
+    cursor: pointer;
+}
+input[type="checkbox"]{
+    position: relative;
+    width: 80px;
+    height: 20px;
+    -webkit-appearance: none;
+    background: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px #BEBCBE;
+    transition: 0.5s;
+}
+
+input:checked[type="checkbox"]{
+    background: #00C853;
+}
+
+input[type="checkbox"]::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 31px;
+    background: #fff;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px #BEBCBE;
+    transition: 0.5s;
+}
+
+input:checked[type="checkbox"]::before{
+    left: 40px;
 }

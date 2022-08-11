@@ -16,52 +16,83 @@
     }
 ?>
 
-<form data-multi-step class="multi-step-form" method='POST' action=''>
-<h2> Inscrit toi des maintenant </h2>
-    <div class="card" data-step>
-        <h3 class="step-title"> Création du compte</h3>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+<div class="inscriptionContainer">
+  <form action="" method="POST" class="signForm">
+    <h1 class="formTitle">Inscrivez-vous</h1>
+    <div class="inputGroup">
+        <label for="nom" class="inputLabel">
+            <input type="text" class="signInput" id="nom" name="nom" placeholder="Nom">
+            <span>Nom</span>
+        </label>
+    </div>
+    <div class="inputGroup">
+        <label for="prenom" class="inputLabel">
+            <input type="text" class="signInput" id="prenom" name="prenom" placeholder="Prénom">
+            <span>Prénom</span>
+        </label>
+    </div>
+    <div class="inputGroup">
+        <label for="email" class="inputLabel">
+            <input type="text" class="signInput" id="email" name="email" placeholder="E-mail">
+            <span>Email</span>
+        </label>
+    </div>
+    <div class="inputGroup">
+        <label for="confirmEmail" class="inputLabel">
+            <input type="text" class="signInput" id="confirmEmail" name="cEmail" placeholder="Confirmez votre email">
+            <span>Confirmez votre email</span>
+        </label>
+    </div>
+    <div class="adresseFormContainer">
+        <div class="adresseNumberAndPrefix">
+            <div class="inputGroup">
+                <label for="adresseNumber" class="inputLabel">
+                    <input type="text" class="signInput" id="adresseNumber" name="numeroAdresse" placeholder="N°" autocomplete="addresse-line3">
+                    <span>N°</span>
+                </label>
+            </div>
+            <div class="inputGroup">
+                <label for="adresseName" class="inputLabel">
+                    <input type="text" class="signInput" id="adresseName" name="rueAdresse" placeholder="Nom de voie" autocomplete="address-line1">
+                    <span>Rue</span>
+                </label>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="cEmail">Confirmer l'email</label>
-            <input type="email" name="cEmail" id="cEmail">
+        <div class="villeAndCp">
+            <div class="inputGroup">
+                <label for="adresseVille" class="inputLabel">
+                    <input type="text" class="signInput" id="adresseVille" name="ville" placeholder="Ville" autocomplete="address-level2" onkeyup="getVilleByName()" onfocus="closeProp()">
+                    <span>Ville</span>
+                </label>
+                <div class="propositionVille"></div>
+            </div>
+        <div class="inputGroup">
+            <label for="adresseCp" class="inputLabel">
+                <input type="text" class="signInput" id="adresseCp" name="adresseCp" placeholder="Code postal" autocomplete="postal-code" onkeyup="getVilleByCp()" onfocus="closeProp()">
+                <span>Code postal</span>
+            </label>
+            <div class="propositionCp"></div>
         </div>
-        <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password">
         </div>
-        <div class="form-group">
-            <label for="cPassword">Confirmer le mot de passe</label>
-            <input type="password" name="cPassword" id="cPassword">
+        <!-- <div class="passwordGroup"> -->
+        <div class="inputGroup">
+            <label for="mdp" class="inputLabel">
+                <input type="password" name="password" id="mdp" placeholder="Mot de passe" class="signInput">
+                <span>Mot de passe</span>
+            </label>
         </div>
-        <button type="button" data-next class="btn btn-inscription">Suivant</button>
+        <div class="inputGroup">
+            <label for="confirmMdp" class="inputLabel">
+                <input type="password" name="cPassword" id="confirmMdp" placeholder="Confirmer mot de passe" class="signInput">
+                <span>Confirmer mot de passe</span>
+            </label>
+        </div>
     </div>
 
-    <div class="card" data-step>
-        <h3 class="step-title">Information personnel</h3>
-        <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" name="nom" id="nom">
-        </div>
-        <div class="form-group">
-            <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom">
-        </div>
-        <div class="form-group">
-            <label for="ville">Ville</label>
-            <input type="text" name="ville" id="ville">
-        </div>
-        <div class="form-group">
-            <label for="rueAdresse">Rue</label>
-            <input type="text" name="rueAdresse" id="rueAdresse">
-        </div>
-        <div class="form-group">
-            <label for="numeroAdresse">Numéro de rue</label>
-            <input type="number" name="numeroAdresse" id="numeroAdresse">
-        </div>
-        <button type="button" data-previous class="btn btn-inscription">Précedant</button>
-        <button type="submit" class="btn btn-inscription">S'inscire</button>
-    </div>
-</form>    
+    <button type="submit" class="signButton">
+      M'inscrire
+    </button>
+  </form>
+</div>
+
+

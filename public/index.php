@@ -77,7 +77,7 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
     ?>
     <div class="profil">
         <div class="buttonsSettings">
-            <button class="btn monProfil">Mon profil</button>
+            <button class="btn monProfil"><a href="index.php?page=parametre"> Mon profil</button>
             <button class="btn deconnection"><a href="../vue/deconnection.php">Deconnection</a></button>
         </div>
     </div>
@@ -110,6 +110,9 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
             case "protection-donnees":
                 include("../vue/protection.php");
                 break;
+            case "parametre":
+                include("../vue/parametre.php");
+                break;
             default:
                 include("../vue/accueil.php"); // Par défault page d'accueil
         }
@@ -130,13 +133,24 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <?php
-                    echo "
-                        <li><a href=index.php?page=accueil>Accueil</a></li>
-                        <li><a href=index.php?page=nosProduits>Nos produits</a></li>
-                        <li><a href=index.php?page=contact>Contact</a></li>
-                        <li><a href=index.php?page=inscription>Inscription</a></li>
-                        <li><a href=index.php?page=connection>Connection</a></li>";
+                    if(!isset($user)){
+                        echo "
+                            <li><a href=index.php?page=accueil>Accueil</a></li>
+                            <li><a href=index.php?page=nosProduits>Nos produits</a></li>
+                            <li><a href=index.php?page=contact>Contact</a></li>
+                            <li><a href=index.php?page=inscription>Inscription</a></li>
+                            <li><a href=index.php?page=connection>Connection</a></li>";
+                    }
+
+                    if(isset($user)){
+                        echo "
+                            <li><a href=index.php?page=accueil>Accueil</a></li>
+                            <li><a href=index.php?page=nosProduits>Nos produits</a></li>
+                            <li><a href=index.php?page=contact>Contact</a></li>
+                            <li><a href=index.php?page=parametre>Mon compte</a></li>";
+                    }
                     ?>
+                    
                 </div>
                 <div class="footer-col">
                     <h4>Condition général de vente</h4>
@@ -165,9 +179,6 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
     <!-- Copyright -->
     <p class=copyright> &#169; Site crée par Redsnak</p>
 
-    <script src="./asset/js/nav.js"></script>
-    <script src="./asset/js/inscription.js"></script>
-    <script src="./asset/js/nosProduits.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -176,5 +187,7 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
             })
         })
     </script>
+    <script src="./asset/js/nav.js"></script>
+    <script src="./asset/js/nosProduits.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-// include "../model/UserManager.php";
 
 class User {
     private $ID;

@@ -53,6 +53,7 @@ nav ul li a {
     text-transform: uppercase;
     margin: 0 1rem;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .buttons {
@@ -262,6 +263,7 @@ ul{
         z-index: 100;
         transition: .3s ease-in-out;
         background: var(--important);
+        justify-content: center;
     }
 
     ul li {

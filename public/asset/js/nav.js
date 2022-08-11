@@ -15,12 +15,16 @@ let toggle = document.querySelector("#user-profil");
 
 // lors d'un clic sur #user-profil, on met profil en active
 toggle.addEventListener("click", () => {
-    profil.classList.toggle("active");
+    profil.classList.toggle("active")    
 })
 
 // Quitte le menu si + options utilisateur si scroll 
-window.onscroll =() => {
+window.onscroll = () => {
     navbar.classList.remove("active-menu");
     profil.classList.remove("active");
 }
+
+
+
+
 

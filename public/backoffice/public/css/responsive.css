@@ -81,10 +81,27 @@
 
     /* produits */
     .containerProduits {
-        grid-template-columns: 1fr!important;
+        display: block!important;
     }
 
     .box__titre {
         font-size: 1.4rem!important;
+    }
+}
+
+@media screen and (max-width : 425px) {
+    .containerProduits__box form {
+        width: 80%!important;
+    }
+
+    .containerProduits form input, select {
+        padding: 0.5rem!important;
+    }
+
+    input[type="checkbox"]{
+        height: 27px!important;
+    }
+    input[type="checkbox"]::before {
+        height: 26px!important;
     }
 }

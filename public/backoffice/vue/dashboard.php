@@ -5,13 +5,21 @@
     <div class="box">
             <span>
                 <?php
-                // $afficher_user = new Dashboard();
-                // $user = $afficher_user->getUser($bdd);
-                // $user->getUser(ConnectionDbAdmin::getInstance()->connection, $user);
-                // echo $user;
+                $afficher_user = new DashboardManager();
+                echo $afficher_user->getUser(ConnectionDbAdmin::getInstance()->connection);
                 ?>
             </span>
             <p> utilisateurs inscrit</p>
+            <i class="bi bi-people-fill"></i>
+    </div>
+    <div class="box">
+            <span>
+                <?php
+                $afficher_produit = new DashboardManager();
+                echo $afficher_produit->getProduit(ConnectionDbAdmin::getInstance()->connection);
+                ?>
+            </span>
+            <p> Produits</p>
             <i class="bi bi-people-fill"></i>
     </div>
     <div class="box">

@@ -16,7 +16,7 @@
     --btn-action : linear-gradient(265.48deg, #F60030 46.34%, #FFCF00 102.96%); 
 }
 
-body {
+/* body {
     background: var(--couleur-body);
 }
 
@@ -87,7 +87,7 @@ animation: slide 250ms 125ms ease-in-out both;
 
 .hide {
 display: none;
-}
+} */
 
 .btn {
     padding: 1rem;
@@ -108,25 +108,192 @@ display: none;
     color: red;
 }
 
-@keyframes slide {
-0% {
-    transform: translateX(200%);
-    opacity: 0;
-}
-100% {
-    transform: translateX(0);
-    opacity: 1;
-}
+
+/**------ Inscription Page -------**/
+.inscriptionContainer {
+max-width: 500px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-inline: auto;
+margin-bottom: 2rem;
 }
 
-@keyframes fade {
-0% {
-    transform: scale(1);
-    opacity: 1;
+.formTitle {
+background-color: transparent;
+color: white;
+margin-bottom: 15px;
 }
 
-100% {
-    opacity: 0;
-    transform: scale(0);
+.inscriptionContainer > .signForm {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+min-width: 420px;
+margin-top: 50px;
+padding: 15px 15px;
+background-color: rgba(0,0,0,0.1);
+border-radius: 15px;
+border: 1px solid transparent;
 }
+
+.signForm > .inputGroup {
+width: 100%;
 }
+
+.inputGroup{
+position: relative;
+display: flex;
+align-items: center;
+margin-bottom: 15px;
+}
+
+.inputGroup > label {
+position: relative;
+border: 1px solid white;
+border-radius: 5px;
+width: 100%;
+padding: 0;
+}
+
+.inputGroup > label > input {
+width: 100%;
+padding: 10px 5px;
+border: 1px solid transparent;
+font-weight: 300;
+border-radius: 3px;
+outline: none;
+background: white;
+}
+
+.propositionVille {
+display: none;
+position: absolute;
+top: 43px;
+left: 0;
+z-index: 10;
+width: 100%;
+max-height: 150px;
+overflow-y: scroll;
+padding-inline: 5px ;
+}
+
+.propositionCp {
+display: none;
+position: absolute;
+top: 43px;
+right: 0;
+z-index: 10;
+width: 100%;
+max-height: 150px;
+overflow-y: scroll;
+padding-inline: 5px ;
+}
+
+.propItem {
+transition: all 200ms ease-in-out;
+}
+
+.propItem:hover {
+background: rgb(76,167,172);
+color: white;
+cursor: pointer;
+}
+
+.inputGroup > label > input::placeholder{
+opacity: 0;
+}
+
+.inputGroup > label > span {
+position: absolute;
+text-transform: uppercase;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-weight: 300;
+padding: 0px 5px;
+top: 0;
+left: 5px;
+transform: translateY(10px);
+font-size: 0.825em;
+transition: all 300ms ease-in-out;
+background: transparent;
+}
+
+/**---- label animation ----**/
+
+label:focus-within > span, input:not(:placeholder-shown) + span {
+color: var(--btn-hover);
+border-radius: 5px 5px 0 0;
+transform: translateY(-15px);
+border-right: 2px solid var(--btn-hover);
+border-left: 2px solid var(--btn-hover);
+border-top: 2px solid var(--btn-hover);
+font-weight: 500;
+background: white;
+}
+
+label:focus-within {
+border: 2px solid var(--btn-hover);
+}
+
+/**---- end label animation ----**/
+
+.adresseFormContainer{
+width: 100%;
+}
+
+.adresseNumberAndPrefix{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+/* .adresseNumberAndPrefix #adresseNumber{
+width: 35px;
+} */
+
+/* .adresseNumberAndPrefix div.inputGroup:nth-child(1){
+width: 45%;
+}
+
+.adresseNumberAndPrefix div.inputGroup:nth-child(2){
+width: 45%;
+}  */
+
+.villeAndCp {
+background-color: transparent;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 15px;
+}
+
+.villeAndCp > .inputGroup {
+width: 50%;
+}
+
+.signForm > .signButton {
+width: 100%;
+height: 55px;
+border: none;
+border-radius: 15px;
+font-size: 1.7rem;
+color: var(--ecriture-nav);
+background: var(--btn-action);
+cursor: pointer;
+}
+
+.signForm > .signButton:hover {
+    animation: scale 1s linear 1;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1);
+
+    }
+}
+    

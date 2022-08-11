@@ -69,24 +69,24 @@ class User{
 
     public function setNom($nom){
         $nom = ucfirst(strtolower($nom));
-        $this->nom = $nom;
+        $this->nom = strip_tags($nom);
     }
 
     public function setPrenom($prenom){
         $prenom = ucfirst(strtolower($prenom));
-        $this->prenom = $prenom;
+        $this->prenom = strip_tags($prenom);
     }
 
     public function setEmail($email){
-        $this->email = $email;
+        $this->email = strip_tags($email);
     }
 
     public function setRueAdresse($rueAdresse){
-        $this->rueAdresse = $rueAdresse;
+        $this->rueAdresse = strip_tags($rueAdresse);
     }
 
     public function setNumeroAdresse($numeroAdresse){
-        $this->numeroAdresse = $numeroAdresse;
+        $this->numeroAdresse = strip_tags($numeroAdresse);
     }
 
     public function setPassword($password){
