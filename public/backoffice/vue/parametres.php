@@ -6,9 +6,8 @@ if(isset($_POST["email"],$_POST["password"],$_POST["cEmail"],$_POST["cPassword"]
         } elseif($_POST["password"] != $_POST["cPassword"]){
             echo "<p class='msg erreur'> Les mots de passe ne correspondent pas.</p>";
         } else {
-            $manager = new AdminManager();
-            // $admin = $manager->createAdmin($_POST);
-            // $manager->saveAdmin(ConnectionDbAdmin::getInstance()->connection, $admin);
+            // $manager = new AdminManager();
+            // $manager->getModificationAdmin(ConnectionDbAdmin::getInstance()->connection, $_POST);
         }
     } 
 }

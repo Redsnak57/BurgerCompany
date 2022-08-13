@@ -4,7 +4,7 @@ class ProduitManager {
     private Produit $produit;
 
     /**
-     * Créer un objet Produit, avec l'image
+     * Créer un objet Produit, avec l'insertion en BDD grâce à setNewProduit, avec l'image grâce à setNewImage
      *
      * @param PDO $bdd
      * @param array $produits

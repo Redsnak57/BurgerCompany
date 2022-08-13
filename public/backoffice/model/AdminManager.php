@@ -113,6 +113,19 @@ class AdminManager{
         }    
     }
 
+        /* faire changement settings admin */ 
+        /* faux */ 
+        public function getModificationAdmin(PDO $bdd){
+            $modifAdmin = "UPDATE `admin` SET email=:email, `password=:password` WHERE ID=:ID";
+            $query = $bdd->prepare($modifAdmin);
+            $query->bindValue(":ID", $this->admin->getID(), PDO::PARAM_INT);
+            $query->bindValue(":email", $this->admin->getEmail(), PDO::PARAM_STR);
+            $query->bindValue(":password", $this->admin->getPassword(), PDO::PARAM_STR);
+            $query->execute();
+
+            var_dump($query);
+        }
+
     /*affichage email + pass admin paramètre */
     /* faux */ 
     public function getInfoSettings(PDO $bdd) {
@@ -123,10 +136,6 @@ class AdminManager{
         return $query;
     }
 
-    /* faire changement settings admin */ 
-    public function getModificationAdmin(PDO $bdd, Admin $admin){
-        
-    }
 }
 
 ?>

@@ -42,7 +42,6 @@
 
 /* Nav  partie gauche*/
 .side-nav {
-    transition: all 1500ms ease-in-out;
     position: relative;
     position: fixed;
     width: 250px;
@@ -50,6 +49,7 @@
     background: var(--important);
 }
 
+/* animation button qui ouvre et ferme le menu*/
 .side-nav #navToggle{
     height: 35px;
     width: 35px;
@@ -61,33 +61,28 @@
     position: absolute;
     top: 5px;
     right: 5px;
+    cursor: pointer;
 }
 
 .side-nav #navToggle div{
-    width: 30%;
-    height: 4px;
-    background-color: white;
-    border: 1px solid white;
-    transition: all 1100ms ease-in-out;
-    transform-origin: center;
+    font-size: 1.7rem;
+    color: white;
+    transition:  all 0.7s ease-in-out;
+}
+
+.side-nav #navToggle>#haut{
+    transform : rotate(180deg);
 }
 
 .side-nav #navToggle.active>#haut{
-    transform: rotate(135deg) translateY(-9px);
-}
-
-.side-nav #navToggle.active>#bas{
-    transform: rotate(-135deg) translateY(9px);
-}
-
-.side-nav.closedNav #navToggle div{
-    transform: rotate(0deg);
+    transform: rotate(0);
 }
 
 .side-nav.closedNav{
-    transition: all 1500ms ease-in-out;
+    transition: all 1s ease-in-out;
     max-width: 70px;
 }
+/* fin animation button qui ouvre et ferme le menu */ 
 
 .nav-logo {
     display: flex;

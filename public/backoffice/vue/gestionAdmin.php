@@ -35,11 +35,11 @@ if(isset($_POST["email"],$_POST["password"],$_POST["cEmail"],$_POST["cPassword"]
             </div>
             <div class="row">
                 <i class="bi bi-key"></i>
-                <input type="password" name="password" placeholder="Sont mot de passe" required>
+                <input type="password" name="password" placeholder="Son mot de passe" required>
             </div>
             <div class="row">
                 <i class="bi bi-key"></i>
-                <input type="password" name="cPassword" placeholder="Confirmer sont mot de passe" required>
+                <input type="password" name="cPassword" placeholder="Confirmer son mot de passe" required>
             </div>
             <div class="row button">
                 <input type="submit" value="Nouvelle administrateur">

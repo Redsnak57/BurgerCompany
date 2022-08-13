@@ -1,7 +1,11 @@
 <?php
 /* Création autoLoader */ 
 function loadClass($class){
-    require('../class/'.$class.'.php');
+    if(file_exists("../model/$class.php")){
+        require_once("../model/$class.php");
+    } elseif(file_exists("../class/$class.php")){
+        require_once("../class/$class.php");
+    }
 }
 spl_autoload_register('loadClass');
 

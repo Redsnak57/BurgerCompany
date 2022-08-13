@@ -52,10 +52,9 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
         <div class="hamburger-nav" id="menu-icon">
             <i class="bi bi-list"></i>
         </div>
-        <nav class="side-nav closedNav">
+        <nav class="side-nav ">
             <div id='navToggle' onclick='toggleNav()'>
-                <div id="haut"></div>
-                <div id="bas"></div>
+                <div id="haut"><i class='bx bx-right-arrow-alt'></i></div>
             </div>
             <div class="nav-logo">
                 <img src="../../asset/img/logo.png" alt="">
