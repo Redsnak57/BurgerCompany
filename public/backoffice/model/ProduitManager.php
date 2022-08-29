@@ -83,6 +83,7 @@ class ProduitManager {
             $ID = $query->fetch(PDO::FETCH_ASSOC);
             $this->produit->hydrate($ID);
             $str = "INSERT INTO ingredient_produit(qte_ingredient_produit, ID_produit, ID_ingredient) VALUES(:qte, :ID_produit, :ID_ingredient)";
+            /* a finir */ 
             foreach($this->produit->ingredient as $ing){
 
             }
