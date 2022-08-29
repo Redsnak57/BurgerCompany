@@ -13,6 +13,14 @@ class ProduitManager {
     public function makeNewProduit(PDO $bdd, array $produits){
         if(isset($produits["nom_produit"],$produits["ID_categorie"], $produits["prixHt_produit"], $produits["ID_tva"], $produits["ID_promo"], $produits["description_produit"], $_FILES["image_produit"])){
             $this->produit = new Produit(null, $produits["nom_produit"], new Categorie($produits["ID_categorie"]), $produits["prixHt_produit"], new Tva($produits["ID_tva"]), new Promo($produits["ID_promo"]), $produits["description_produit"], isset($produits["disponnibilite_produit"]) ? "1" : "0", $_FILES["image_produit"]["name"]);
+            if(isset($produits['ingredient'])){
+                foreach($produits['ingredient'] as $ingredient){
+                    $this->produit->addIngredient($ingredient);
+                }
+            }
+
+
+            var_dump($this->produit);
             if($this->setNewProduit($bdd)){
                 $this->setNewImage();
                 return 1;
@@ -69,7 +77,20 @@ class ProduitManager {
         $query->bindValue(":ID_tva", $this->produit->getTva()->getID(), PDO::PARAM_INT);
         $query->bindValue(":ID_categorie", $this->produit->getcategorie()->getID(), PDO::PARAM_INT);
 
-        return $query->execute();
+        if($query->execute()){
+            $str = 'SELECT LAST_INSERT_ID() as ID FROM produit';
+            $query=$bdd->query($str);
+            $ID = $query->fetch(PDO::FETCH_ASSOC);
+            $this->produit->hydrate($ID);
+            $str = "INSERT INTO ingredient_produit(qte_ingredient_produit, ID_produit, ID_ingredient) VALUES(:qte, :ID_produit, :ID_ingredient)";
+            foreach($this->produit->ingredient as $ing){
+
+            }
+            return $query->execute();
+
+        } else {
+            return false;
+        }
 
     }
 

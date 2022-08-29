@@ -22,6 +22,11 @@ $allPromo = $promo->getAllPromo(ConnectionDbAdmin::getInstance()->connection);
 $produit = new ProduitManager();
 $produit->makeNewProduit(ConnectionDbAdmin::getInstance()->connection, $_POST);
 
+//------Ingredient-----\\
+$ingredient = new IngredientManager(ConnectionDbAdmin::getInstance()->connection);
+$ingredient->makeNewIngredient($_POST);
+$allIngredient = $ingredient->getAllIngredient();
+
 ?>
 
 <h2 class="top-title">Produits</h2>
@@ -34,6 +39,16 @@ $produit->makeNewProduit(ConnectionDbAdmin::getInstance()->connection, $_POST);
 
         <form action="" method="POST">
             <input type="text" name="nom_categorie" id="nom_categorie" placeholder="Nouvelle catégorie">
+            <input type="submit" value="Enregistrer" class="btn">
+        </form>
+    </div>  
+
+    <div class="containerProduits__box ingredient">
+        <h1 class="box__titre">Ajouter un ingrédient</h1>
+
+        <form action="" method="POST">
+            <input type="text" name="nom_ingredient" id="nom_ingredient" placeholder="Nom de l'ingredient">
+            <input type="text" name="prixHt_ingredient" id="prixHt_ingredient" placeholder="Prix ht de l'ingredient">
             <input type="submit" value="Enregistrer" class="btn">
         </form>
     </div>  
@@ -100,6 +115,19 @@ $produit->makeNewProduit(ConnectionDbAdmin::getInstance()->connection, $_POST);
                 <label for="">Disponibilité : 
                     <input type="checkbox" class="disponnibilite_produit" name="disponnibilite_produit">
                 </label>
+            </div>
+
+            <div class="ingredientContainer">
+                <?php 
+                    foreach($allIngredient as $ing):
+                ?>
+                    <label for="ingredient-<?= $ing->getID(); ?>" class="checkboxLabel">
+                        <input type="checkbox" id="ingredient-<?= $ing->getID(); ?>" name="ingredient[]" value="<?= $ing->getID(); ?>">
+                        <span><?= $ing->getNom(); ?></span>
+                    </label>
+                <?php
+                    endforeach;
+                ?>
             </div>
 
             <input type="submit" value="Enregistrer" class="btn">

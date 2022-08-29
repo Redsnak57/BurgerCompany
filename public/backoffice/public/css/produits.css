@@ -1,6 +1,6 @@
 .containerProduits {
     display: grid;
-    grid-template-areas: "categorie produit" "tva produit" "promo produit";
+    grid-template-areas: "categorie produit" "ingredient produit" "tva produit" "promo produit";
     gap: 20px;
 }
 
@@ -10,6 +10,10 @@
 
 .categorie {
     grid-area: categorie;
+}
+
+.ingredient {
+    grid-area: ingredient;
 }
 
 .tva {
@@ -75,7 +79,7 @@
     margin-left: 2rem;
     cursor: pointer;
 }
-input[type="checkbox"]{
+input.disponnibilite_produit{
     position: relative;
     width: 80px;
     height: 20px;
@@ -87,11 +91,11 @@ input[type="checkbox"]{
     transition: 0.5s;
 }
 
-input:checked[type="checkbox"]{
+input:checked.disponnibilite_produit{
     background: #00C853;
 }
 
-input[type="checkbox"]::before{
+input.disponnibilite_produit::before{
     content: "";
     position: absolute;
     width: 40px;
@@ -104,6 +108,6 @@ input[type="checkbox"]::before{
     transition: 0.5s;
 }
 
-input:checked[type="checkbox"]::before{
+input:checked.disponnibilite_produit::before{
     left: 40px;
 }

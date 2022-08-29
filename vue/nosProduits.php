@@ -8,122 +8,75 @@ $categorieClient = $manager->getAllClientCategorie(ConnectionDb::getInstance()->
 $produit = new ProduitClientManager();
 // Fait une boucle pour l'afficher dans produit
 $newProduit = $produit->getAllClientProduct(ConnectionDb::getInstance()->connection);
+
+$offreManager = new OffreManager(ConnectionDb::getInstance()->connection);
+
 ?>
 
-<section class="vedettes">
+
+
+<section class="nosProduits">
     <div class="heading">
         <p>Découvre tous <span> nos produits</span></p>
     </div>
 
     <div class="produits__filters">
         <span class="produits__item" data-filter="all">  Tous </span>
-        <span class="produits__item" data-filter="entree">  Entrée </span>
-        <span class="produits__item" data-filter="boeuf"> Burger boeuf </span>
-        <span class="produits__item" data-filter="poulet"> Burger poulet </span>
-        <span class="produits__item" data-filter="dessert"> Dessert </span>
+
         <?php
         foreach($categorieClient as $cat){
-            echo "<span> $cat[nom_categorie] </span>";
+            $filter = strtolower(str_replace("é","e", $cat["nom_categorie"]));
+            echo "<span class='produits__item' data-filter=$filter> $cat[nom_categorie] </span>";
         }
         ?>
     </div>
 
 
-    <div class="container nosProduits" data-item="entree">
-        <div class="box">
-            <p> Wrap</p>
-            <img src="../public/asset/img/wrap.jpeg" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
-            </div>
-        </div>
-        <!-- test php -->
-        <div class="box">
+    <?php foreach($categorieClient as $cat): 
+            $filter = strtolower(str_replace("é","e", $cat["nom_categorie"]));
+        ?>
+        <div class="container nosProduits" data-item="<?= $filter ?>">
+        
+            <!-- fait une boucle pour afficher les produits -->        
             <?php
+            // Si la catégorie a l ID qui corresponde a l ID de produit alors filtre pour afficher le bon 
             foreach($newProduit as $prod){
+                if($cat['ID'] == $prod['ID_categorie']):
+                    $total = $prod["prixht_produit"] + ($prod["prixht_produit"] * ($prod["taux"]/100));
+                    $offre = $prod['ID_promo'];
+                    if($offre != null):
+                        $offre = $offreManager->getOffreById(intval($offre));
+                        $totalPromo = $offre->calcPrixReduit($total);
             ?>
-                <p><?= $prod["nom_produit"]; ?></p>
-                <img src="./asset/imgProduct/<?= $prod["image_produit"]; ?> alt="">
-                <div class="acheter">
-                    <i class="gauche_i fa-solid fa-info"></i>
-                    <i class="droite_i fa-solid fa-basket-shopping"></i>
-                    <p class="prix_promo"><?= $prod["prixht_produit"]; ?>€</p>
+                <div class="box promo" style="--reduc:'<?= $offre->getPourcentageString(); ?>';">
+                    <p><?= $prod["nom_produit"]; ?></p>
+                    <img src="./asset/imgProduct/<?= $prod["image_produit"]; ?>">
+                    <div class="acheter">
+                        <i class="gauche_i fa-solid fa-info"></i>
+                        <i class="droite_i fa-solid fa-basket-shopping"></i>
+                        <p class="prix prixPromo"><?= number_format($total,2,",",".") ?>€</p>
+                        <p class="prix"><?= $totalPromo; ?>€</p>
+                    </div>
+                </div>
+                <?php
+                    else:
+                        ?>
+    	        <div class="box">
+                    <p><?= $prod["nom_produit"]; ?></p>
+                    <img src="./asset/imgProduct/<?= $prod["image_produit"]; ?>">
+                    <div class="acheter">
+                        <i class="gauche_i fa-solid fa-info"></i>
+                        <i class="droite_i fa-solid fa-basket-shopping"></i>
+                        <p class="prix"><?= number_format($total,2,",",".") ?>€</p>
+                    </div>
                 </div>
             <?php
+                    endif;
+                endif;
             }
-            ?>
-        </div>
-        <!-- fin test php -->
-        <div class="box promo">
-            <p> Wrap</p>
-            <img src="../public/asset/img/wrap.jpeg" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
-            </div>
-        </div>
+            ?>       
     </div>
 
-    <div class="container nosProduits" data-item="boeuf">
-        <div class="box promo" >
-            <p> Double cheese Burger</p>
-            <img src="../public/asset/img/double_chesse.png" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
-            </div>
-        </div>
-        <div class="box promo">
-            <p> Double cheese Burger</p>
-            <img src="../public/asset/img/double_chesse.png" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
-            </div>
-        </div>
-        <div class="box">
-            <p> Double cheese Burger</p>
-            <img src="../public/asset/img/double_chesse.png" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix">5.99€</p>
-            </div>
-        </div>
-        <div class="box">
-            <p> Double cheese Burger</p>
-            <img src="../public/asset/img/double_chesse.png" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix">5.99€</p>
-            </div>
-        </div>
-    </div>
+    <?php endforeach; ?>
 
-    <div class="container nosProduits" data-item="dessert">
-        <div class="box" >
-            <p> Tiramisu</p>
-            <img src="../public/asset/img/tira.png" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
-            </div>
-        </div>
-        <div class="box promo">
-            <p> Tiramisu</p>
-            <img src="../public/asset/img/tira.png" alt="">
-            <div class="acheter">
-                <i class="gauche_i fa-solid fa-info"></i>
-                <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
-            </div>
-        </div>
-    </div>
 </section>

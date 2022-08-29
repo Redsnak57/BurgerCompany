@@ -42,10 +42,10 @@
 <!-- Container graphique visuel -->
 <div class="container charts">
     <div class="box">
-        <canvas class="shadow" id="chartClients" width="400" height="250"></canvas>
+        <canvas class="shadow" id="chartClients"></canvas>
     </div>
     <div class="box">
-        <canvas class="shadow" id="chartRecette" width="400" height="250"></canvas>
+        <canvas class="shadow" id="chartRecette"></canvas>
     </div>
 </div>
 

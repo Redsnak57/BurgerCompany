@@ -31,7 +31,7 @@
 .container .box {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     position: relative;
     width: 100%;
@@ -43,6 +43,10 @@
     background-color: var(--important);
     -webkit-box-shadow: 11px 5px 14px 0px rgba(0,0,0,0.5); 
     box-shadow: 11px 5px 14px 0px rgba(0,0,0,0.5);
+}
+
+.container > .box{
+    justify-content: space-between;
 }
 
 .container .box span {
@@ -70,7 +74,7 @@
 
 .charts .box {
     width: 100%;
-    padding: 10rem 1.5rem;
+    height: fit-content;
     border-radius: 8px;
     background: var(--important);
     border: 0;
@@ -79,7 +83,6 @@
 
 .charts .box canvas {
     background-color: var(--couleur-body);
-    padding: 15px;
     border-radius: 8px;
 }
 

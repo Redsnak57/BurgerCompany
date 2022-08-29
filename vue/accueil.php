@@ -42,7 +42,7 @@
             <div class="acheter">
                 <i class="gauche_i fa-solid fa-info"></i>
                 <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
+                <p class="prix">5.99€</p>
             </div>
         </div>
         <div class="box promo">
@@ -51,7 +51,7 @@
             <div class="acheter">
                 <i class="gauche_i fa-solid fa-info"></i>
                 <i class="droite_i fa-solid fa-basket-shopping"></i>
-                <p class="prix_promo">5.99€</p>
+                <p class="prix">5.99€</p>
             </div>
         </div>
         <div class="box">

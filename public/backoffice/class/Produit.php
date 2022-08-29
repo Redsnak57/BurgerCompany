@@ -14,6 +14,7 @@ class Produit{
     private $description_produit;
     private $image_produit;
     private $disponnibilite_produit;
+    private array $ingredient;
 
     public function __construct($ID= "", $nom_produit="", $categorie= "", $prixHt_produit= "", $Tva= "", $promo= "", $description_produit= "", $disponnibilite_produit= "", $image_produit= ""){
         $this->ID = $ID;
@@ -34,6 +35,15 @@ class Produit{
                 $this->$method($data);
             }
         }
+    }
+
+    public function addIngredient(int $id): Produit
+    {
+        $manager = new IngredientManager(ConnectionDbAdmin::getInstance()->connection);
+
+        $this->ingredient[] = $manager->getIngredientById($id);
+
+        return $this;
     }
 
     private function setID($ID){

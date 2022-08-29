@@ -1,6 +1,9 @@
-/* container et box déjà fait dans accueil.php+css */ 
+.nosProduits {
+    width: 100%;
+}
 
-.vedettes .produits__filters {
+/* filtre js */ 
+.nosProduits .produits__filters {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,24 +11,116 @@
     column-gap: 1.875rem;
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
+    gap: 2rem;
 }
 
-.vedettes .produits__item {
+.nosProduits .produits__item {
     cursor: pointer;
     font-weight: 600;
     transition: .3s;
     color: var(--important);
 }
 
-.vedettes .produits__item:hover {
+.nosProduits .produits__item:hover {
     color: var(--btn-hover);
 }
 
-.vedettes .produits__item.active {
+.nosProduits .produits__item.active {
     background-color: unset;
     transition: unset;
 }
 
 .container.nosProduits.hide {
     display: none;
+}
+/* fin filtre js */ 
+
+.nosProduits .container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.nosProduits .container .box img{
+    width: 40%;
+    margin: 0.3rem auto;
+}
+
+.nosProduits .container .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #30ace03f;
+    width: 33%;
+    margin: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.nosProduits .container .box p {
+    text-align: center;
+    color: var(--txt-body);
+    padding: 1rem;
+}
+
+.nosProduits .container .box .prix {
+    text-align: center;
+    color: var(--important);
+    padding: 1rem;
+    font-weight: 800;
+}
+
+
+.nosProduits .container .box .acheter i {
+    color: var(--important);
+    opacity: 0;
+    font-size: 1.2rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.nosProduits .container .box .acheter .droite_i {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+}
+
+.nosProduits .container .box .acheter .gauche_i {
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+}
+.nosProduits .container  .box:hover .acheter .droite_i{
+    opacity: 1;
+}
+.nosProduits .container  .box:hover .acheter .gauche_i{
+    opacity: 1;
+}
+
+.prixPromo {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 0.15rem;
+}
+
+.promo::after {
+    position: absolute;
+    content: var(--reduc);
+    color: white;
+    background: var(--important);
+    padding: 1px 24px;
+    transform: rotate(45deg);
+    top : 10px;
+    right: -20px;
+}
+
+
+@media (max-width: 600px) {
+    .nosProduits .container .box {
+        width: 100%;
+        aspect-ratio: 3/2;
+    }
+
 }
