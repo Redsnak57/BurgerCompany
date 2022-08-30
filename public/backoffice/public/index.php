@@ -142,6 +142,7 @@ $bdd = ConnectionDbAdmin::getInstance("localhost", "burgercompany", "root", "");
     <!-- <script src="./js/scripts.js"></script> -->
     <script src="./js/charts.js"></script>
     <script src="./js/navAdmin.js"></script>
+    <script src="./js/produit.js"></script>
     <script src="./js/searchClient.js"></script>
 </body>
 </html>

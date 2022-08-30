@@ -16,13 +16,13 @@ class Produit{
     private $disponnibilite_produit;
     private array $ingredient;
 
-    public function __construct($ID= "", $nom_produit="", $categorie= "", $prixHt_produit= "", $Tva= "", $promo= "", $description_produit= "", $disponnibilite_produit= "", $image_produit= ""){
+    public function __construct($ID= "", $nom_produit="", $categorie= "", $prixHt_produit= "", $Tva= "", $Promo= "", $description_produit= "", $disponnibilite_produit= "", $image_produit= ""){
         $this->ID = $ID;
         $this->nom_produit = $nom_produit;
-        $this->categorie = $categorie;
+        !empty($categorie) && $this->setID_categorie(intval($categorie));
         $this->prixHt_produit = $prixHt_produit;
-        $this->Tva = $Tva;
-        $this->Promo = $promo;
+        !empty($Tva) && $this->setID_Tva(intval($Tva));
+        !empty($Promo) && $this->setID_Promo(intval($Promo));
         $this->description_produit = $description_produit;
         $this->image_produit = $image_produit;
         $this->disponnibilite_produit = $disponnibilite_produit;
@@ -46,80 +46,107 @@ class Produit{
         return $this;
     }
 
+    public function getIngredient(): array{
+        return $this->ingredient;
+    }
+
+    public function hasIngredient(): bool{
+        return isset($this->ingredient);
+    }
+
     private function setID($ID){
         $this->ID=$ID;
     }
 
-    public function getID(){
+    public function getID(): int{
         return $this->ID;
     }
 
-    public function getNom_produit(){
+    public function getNom_produit(): string{
         return $this->nom_produit;
     }
-    public function getcategorie(){
+    public function getcategorie(): Categorie{
         return $this->categorie;
     }
 
-    public function getPrixHt_produit(){
+    public function getPrixHt_produit(): float{
         return $this->prixHt_produit;
     }
 
-    public function getTva(){
+    public function getTva(): Tva{
         return $this->Tva;
     }
 
-    public function getPromo(){
-        return $this->Promo;
+    public function getPromo(): ?Promo {
+        return isset($this->Promo) ? $this->Promo : null;
     }
 
-    public function getDescription_produit(){
+    public function getDescription_produit(): string{
         return $this->description_produit;
     }
 
-    public function getImage_produit(){
+    public function getImage_produit(): string{
         return $this->image_produit;
     }
 
-    public function getDisponnibilite_produit(){
+    public function getDisponnibilite_produit(): bool{
         return $this->disponnibilite_produit;
     }
 
-    public function setNom_produit($nom_produit){
+    public function setNom_produit(string $nom_produit): void{
         $nom_produit = htmlspecialchars(strip_tags($nom_produit));
         $this->nom_produit = $nom_produit;
     }
 
-    public function setcategorie($categorie){
-        $categorie = htmlspecialchars(strip_tags($categorie));
-        $this->categorie = $categorie;
+    private function setID_categorie(int $categorie): void{
+        $manager = new CategorieManager();
+        $this->categorie = $manager->getCategorieByID(ConnectionDbAdmin::getInstance()->connection,$categorie);
     }
 
-    public function setPrixHt_produit($prixHt_produit){
+    public function setCategorie(int $categorie): void{
+        $categorie = htmlspecialchars(strip_tags($categorie));
+        $this->categorie = new Categorie($categorie);
+    }
+
+    public function setPrixHt_produit(float $prixHt_produit): void{
         $prixHt_produit = htmlspecialchars(strip_tags($prixHt_produit));
         $this->prixHt_produit = $prixHt_produit;
     }
 
-    public function setTva($Tva){
+    private function setID_tva(int $tva): void{
+        $manager = new TvaManager();
+        $this->Tva = $manager->getTvaByID(ConnectionDbAdmin::getInstance()->connection,$tva);
+    }
+
+    public function setTva(int $Tva): void{
         $Tva = htmlspecialchars(strip_tags($Tva));
-        $this->Tva = $Tva;
+        $this->Tva = new Tva($Tva);
     }
 
-    public function setPromo($promo){
+    private function setID_promo(?int $promo): void{
+        $manager = new PromoManager();
+        $this->Promo = $manager->getPromoByID(ConnectionDbAdmin::getInstance()->connection,$promo);
+    }
+
+    public function setPromo(?int $promo): void{
         $promo = htmlspecialchars(strip_tags($promo));
-        $this->Promo = $promo;
+        if($promo != null && !empty($promo)){
+            $this->Promo = new Promo($promo);
+        } else {
+            $this->Promo = new Promo();
+        }
     }
 
-    public function setDescription_produit($description_produit){
+    public function setDescription_produit(string $description_produit): void{
         $description_produit = htmlspecialchars(strip_tags($description_produit));
         $this->description_produit = $description_produit;
     }
 
-    public function setImage_produit($image_produit){
+    public function setImage_produit(string $image_produit): void{
         $this->image_produit = $image_produit;
     }
 
-    public function setDisponnibilite_produit($disponnibilite_produit){
+    public function setDisponnibilite_produit(bool $disponnibilite_produit): void{
         $this->disponnibilite_produit = $disponnibilite_produit;
     }
 

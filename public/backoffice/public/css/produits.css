@@ -111,3 +111,62 @@ input.disponnibilite_produit::before{
 input:checked.disponnibilite_produit::before{
     left: 40px;
 }
+
+.ingredientContainer {
+    row-gap: 0.875rem;
+    column-gap: 1rem;
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+}
+
+#tableStyleProduit {
+    margin-top: 1.25rem;
+}
+
+/* animation button qui ouvre et ferme la div produit*/
+
+.nosProduits {
+    position: relative;
+}
+.nosProduits .btnProduit{
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    background: var(--btn-action);
+    padding-right: 4px;
+}
+
+.nosProduits .btnProduit div{
+    font-size: 1.7rem;
+    color: white;
+    transition:  all 0.7s ease-in-out;
+}
+
+.nosProduits .btnProduit>#haut{
+    transform : rotate(90deg);
+}
+/* fin animation button qui ouvre et ferme la div produit */
+
+.modifier {
+    background: #0594d0cf;
+}
+
+#tableProduit {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+#tableIngredient {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#tableCategorie {
+    grid-template-columns: repeat(3, 1fr);
+}

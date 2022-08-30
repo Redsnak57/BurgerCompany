@@ -47,6 +47,24 @@ class PromoManager {
 
         return $reponse;
     }
+
+    public function getPromoByID(PDO $bdd, ?int $ID): Promo{
+        $cat = new Promo();
+
+        $str = "SELECT * FROM promo WHERE ID=:ID";
+        $query = $bdd->prepare($str);
+        $query->bindValue(":ID", $ID, PDO::PARAM_INT);
+        
+        if($query->execute()){
+            $data = $query->fetch(PDO::FETCH_ASSOC);
+            if($data != false){
+                $cat->hydrate($data);
+            }
+        }
+
+
+        return $cat;
+    }
 }
 
 ?>

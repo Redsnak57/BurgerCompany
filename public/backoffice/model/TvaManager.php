@@ -70,6 +70,20 @@ class TvaManager {
         return $reponse;
         
     }
+
+    public function getTvaByID(PDO $bdd, int $ID): Tva{
+        $cat = new Tva();
+
+        $str = "SELECT * FROM tva WHERE ID=:ID";
+        $query = $bdd->prepare($str);
+        $query->bindValue(":ID", $ID, PDO::PARAM_INT);
+        $query->execute();
+
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $cat->hydrate($data);
+
+        return $cat;
+    }
 }
 
 ?>

@@ -14,7 +14,7 @@ class IngredientManager {
      * 
      * @return string
      */
-    public function checkIngredient(){
+    public function checkIngredient(): string{
         $check_tva = $this->db->prepare("SELECT * FROM ingredient WHERE nom_ingredient=:nom");
         $check_tva->bindValue(":nom", $this->ingredient->getNom(), PDO::PARAM_STR);
         $check_tva->execute();
@@ -31,7 +31,7 @@ class IngredientManager {
      * 
      * @return string
      */
-    public function setNewIngredient(){
+    public function setNewIngredient(): bool{
         $this->checkIngredient();
         if($this->checkIngredient() == 1){
             echo "<p> Ingrédient déjà existant </p>";
@@ -50,7 +50,7 @@ class IngredientManager {
      * @param array $ingredient
      * @return string
      */
-    public function makeNewIngredient(array $ingredient){
+    public function makeNewIngredient(array $ingredient): bool{
         if(isset($ingredient["nom_ingredient"])){
             $this->ingredient = new Ingredient();
             $this->ingredient->hydrate($ingredient);
@@ -60,6 +60,7 @@ class IngredientManager {
                 return 0;
             }
         }
+        return false;
     }
 
     public function getIngredientById(int $id): Ingredient
@@ -80,7 +81,7 @@ class IngredientManager {
     }
 
     
-    public function getAllIngredient(){
+    public function getAllIngredient(): array{
         $returnArray = [];
 
         $str = "SELECT * FROM ingredient";
@@ -94,6 +95,19 @@ class IngredientManager {
         }
 
         return $returnArray; 
+    }
+
+    public function suppIngredientByID(PDO $bdd, int $ID): bool {
+        $reqDelete = "DELETE FROM ingredient WHERE ID=:ID";
+        $query = $bdd->prepare($reqDelete);
+        $query->bindValue(":ID", $ID, PDO::PARAM_INT);
+
+        if($query->execute()){
+            return true;
+        } else {
+            return false;
+            echo "Une erreur c'est produite.";
+        }
     }
 }
 

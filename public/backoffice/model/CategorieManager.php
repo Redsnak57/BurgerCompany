@@ -9,7 +9,7 @@ class CategorieManager {
      * @param PDO $bdd
      * @return string
      */
-    public function checkCategorie(PDO $bdd){
+    public function checkCategorie(PDO $bdd): string{
         $check_categorie = $bdd->prepare("SELECT * FROM `categorie` WHERE nom_categorie=:nom_categorie");
         $check_categorie->bindValue(":nom_categorie", $this->product->getNom_categorie(), PDO::PARAM_STR);
         $check_categorie->execute();
@@ -27,7 +27,7 @@ class CategorieManager {
      * @param PDO $bdd
      * @return string
      */
-    public function setNewCategory(PDO $bdd){
+    public function setNewCategory(PDO $bdd): bool{
         $this->checkCategorie($bdd);
         if($this->checkCategorie($bdd) == 1){
             echo "<p> Catégorie déjà éxistante. </p>";
@@ -48,7 +48,7 @@ class CategorieManager {
      * @param array $nom_categorie
      * @return string
      */
-    public function makeNewCategory(PDO $bdd, array $nom_categorie){
+    public function makeNewCategory(PDO $bdd, array $nom_categorie): bool{
         if(isset($nom_categorie['nom_categorie'])){
             $this->product = new Categorie(null, $nom_categorie["nom_categorie"]);
             if($this->setNewCategory($bdd)){
@@ -56,7 +56,8 @@ class CategorieManager {
             } else {
                 return 0;
             }
-        }
+        } 
+        return 0;
     }
 
     /**
@@ -65,13 +66,51 @@ class CategorieManager {
      * @param PDO $bdd
      * @return array
      */
-    public function getAllCategorie(PDO $bdd){
+    public function getAllCategorie(PDO $bdd): array{
+        $array = [];
+
         $str = "SELECT * FROM categorie";
         $query = $bdd->query($str);
         $reponse = $query->fetchAll();
 
-        return $reponse;
+        foreach($reponse as $cat){
+            $object = new Categorie();
+            $object->hydrate($cat);
+            array_push($array,$object);
+        }
+
+        return $array;
         
+    }
+
+    public function getCategorieByID(PDO $bdd, int $ID): Categorie{
+        $cat = new Categorie();
+
+        $str = "SELECT * FROM categorie WHERE ID=:ID";
+        $query = $bdd->prepare($str);
+        $query->bindValue(":ID", $ID, PDO::PARAM_INT);
+
+        if($query->execute()){
+            $data = $query->fetch(PDO::FETCH_ASSOC);
+            if($data != false){
+                $cat->hydrate($data);
+            }
+        }
+
+
+        return $cat;
+    }
+
+    public function suppCategorieByID(PDO $bdd, int $ID){
+        $reqDelete = "DELETE FROM categorie WHERE ID=:ID";
+        $query = $bdd->prepare($reqDelete);
+        $query->bindValue(":ID", $ID, PDO::PARAM_INT);
+
+        if($query->execute()){
+            
+        } else {
+            echo "Une erreur c'est produite.";
+        }
     }
 }
 
