@@ -9,7 +9,7 @@ class TvaManager {
      * @param PDO $bdd
      * @return string
      */
-    public function checkTva(PDO $bdd){
+    public function checkTva(PDO $bdd): string{
         $check_tva = $bdd->prepare("SELECT * FROM tva WHERE taux=:taux");
         $check_tva->bindValue(":taux", $this->tva->getTaux(), PDO::PARAM_STR);
         $check_tva->execute();
@@ -24,9 +24,9 @@ class TvaManager {
      * Test dans la premier temps si la Tva existe déjà grace à la fonction checkTva. Si oui alors echec, sinon insert dans la BDD
      *
      * @param PDO $bdd
-     * @return string
+     * @return bool
      */
-    public function setNewTva(PDO $bdd){
+    public function setNewTva(PDO $bdd): bool{
         $this->checkTva($bdd);
         if($this->checkTva($bdd) == 1){
             echo "<p> TVA déjà existante";
@@ -36,6 +36,7 @@ class TvaManager {
             $query->bindValue(":taux", $this->tva->getTaux(), PDO::PARAM_STR);
             return $query->execute();
         }
+        return false;
     }
 
     /**
@@ -43,9 +44,9 @@ class TvaManager {
      *
      * @param PDO $bdd
      * @param array $tva
-     * @return string
+     * @return bool
      */
-    public function makeNewTva(PDO $bdd, array $tva){
+    public function makeNewTva(PDO $bdd, array $tva): bool{
         if(isset($tva["tva"])){
             $this->tva = new Tva(null, $tva["tva"]);
             if($this->setNewTva($bdd)){
@@ -54,23 +55,43 @@ class TvaManager {
                 return 0;
             }
         }
+        return false;
     }
 
     /**
-     * Récupère toutes les tva dans la BDD
+     * Récupère toutes les tva dans la BDD sous forme d'object
      *
      * @param PDO $bdd
      * @return array
      */
-    public function getAllTva(PDO $bdd){
+    public function getAllTva(PDO $bdd): array{
+        // $str = "SELECT * FROM tva";
+        // $query = $bdd->query($str);
+        // $reponse = $query->fetchAll();
+
+        // return $reponse;
+
+        $array = [];
+
         $str = "SELECT * FROM tva";
         $query = $bdd->query($str);
-        $reponse = $query->fetchAll();
+        $reponse = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $reponse;
-        
+        foreach($reponse as $tva){
+            $object = new Tva();
+            $object->hydrate($tva);
+            array_push($array,$object);
+        }
+        return $array;
     }
 
+    /**
+     * Récupère le taux de la tva via l'ID
+     *
+     * @param PDO $bdd
+     * @param int $ID
+     * @return Tva
+     */
     public function getTvaByID(PDO $bdd, int $ID): Tva{
         $cat = new Tva();
 
@@ -83,6 +104,25 @@ class TvaManager {
         $cat->hydrate($data);
 
         return $cat;
+    }
+
+    /**
+     * Supprime la TVA avec son ID
+     *
+     * @param PDO $bdd
+     * @param int $ID
+     * @return void
+     */
+    public function suppTvaByID(PDO $bdd, int $ID){
+        $reqDelete = "DELETE FROM tva WHERE ID=:ID";
+        $query = $bdd->prepare($reqDelete);
+        $query->bindValue(":ID", $ID, PDO::PARAM_INT);
+
+        if($query->execute()){
+
+        } else {
+            echo "Une erreur c'est produite.";
+        }
     }
 }
 

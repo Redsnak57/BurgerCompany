@@ -41,11 +41,18 @@ class PromoManager {
     }
 
     public function getAllPromo(PDO $bdd){
+        $array = [];
+
         $str = "SELECT * FROM promo";
         $query = $bdd->query($str);
-        $reponse = $query->fetchAll();
+        $reponse = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $reponse;
+        foreach($reponse as $promo){
+            $object = new Promo();
+            $object->hydrate($promo);
+            array_push($array,$object);
+        }
+        return $array;
     }
 
     public function getPromoByID(PDO $bdd, ?int $ID): Promo{
@@ -61,9 +68,19 @@ class PromoManager {
                 $cat->hydrate($data);
             }
         }
-
-
         return $cat;
+    }
+
+    public function suppPromoByID(PDO $bdd, int $ID){
+        $reqDelete = "DELETE FROM promo WHERE ID=:ID";
+        $query = $bdd->prepare($reqDelete);
+        $query->bindValue(":ID", $ID, PDO::PARAM_INT);
+
+        if($query->execute()){
+
+        } else {
+            echo "Une erreur c'est produite.";
+        }
     }
 }
 

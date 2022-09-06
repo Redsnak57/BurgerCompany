@@ -69,7 +69,7 @@ class Produit{
         return $this->categorie;
     }
 
-    public function getPrixHt_produit(): float{
+    public function getPrixHt_produit(){
         return $this->prixHt_produit;
     }
 

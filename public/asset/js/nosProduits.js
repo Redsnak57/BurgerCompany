@@ -1,3 +1,4 @@
+// Filtre les catégories 
 let list = document.querySelectorAll(".produits__item");
 let itemBox = document.querySelectorAll(".nosProduits");
 
@@ -21,3 +22,46 @@ for (let i=0; i<list.length; i++) {
         }
     })
 }
+
+
+// modal produits 
+let popupsBtn = document.querySelectorAll("[data-popup-ref]");
+
+popupsBtn.forEach(btn => {
+    btn.addEventListener("click", activePopUp);
+
+    function activePopUp() {
+        let popupID = btn.getAttribute("data-popup-ref");
+        let popup = document.querySelector(`[data-popup-id='${popupID}']`);
+
+        if(popup != undefined && popup != null){
+            let popupContent = document.querySelector(".popupContent");
+            let closeBtns = popup.querySelectorAll("[data-dismiss-popup]");
+
+            // ajoute la classe active
+            popup.classList.add("active");
+            // Ajoute 1ms après la classe active, pour avoir une transition via le css
+            setTimeout(()=> {
+                popupContent.classList.add("active");
+            }, 1);
+
+            
+            closeBtns.forEach(btn => { btn.addEventListener("click", onPopUpClose); });
+            // Si clic ailleurs de la popup ferme celui ci
+            popup.addEventListener("click", onPopUpClose);
+            // Si clic dans la popupContent alors ça ne se ferme pas
+            popupContent.addEventListener("click", (ev) => {
+                ev.stopPropagation();
+            });
+
+
+            // Ferme le popup
+            function onPopUpClose(){
+                setTimeout(()=> {
+                    popup.classList.remove("active");
+                }, 250);
+                popupContent.classList.remove("active");
+            }
+        } 
+    }
+})

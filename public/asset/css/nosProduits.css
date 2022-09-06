@@ -116,6 +116,93 @@
     right: -20px;
 }
 
+/* Modal */ 
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.089);
+    z-index: 1000;
+    display: none;
+}
+
+.popup.active {
+    display: inline-block;
+}
+
+.popupContent {
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+    height: 400px;
+    max-height: 720px;
+    min-width: 520px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: top .2s linear, opacity 200ms linear;
+}
+
+.popupContent.active {
+    opacity: 1;
+    top: 10%!important;
+}
+
+.popupHeader {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2%;
+    background-color: var(--btn-hover);
+    color: var(--txt-body);
+}
+
+.popupBody {
+    height: 80%;
+    padding: 2%;
+    overflow: hidden;
+    background-color: var(--txt-body);
+}
+
+.popupBody #imgPopup {
+    width: 30%;
+}
+
+.popupBody p, .popupHeader p {
+    color: white!important;
+}
+
+.popupFooter {
+    height: 13%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--btn-hover);
+}
+
+#closeCroix {
+    position: absolute;
+    right: 10px;
+    font-size: 2rem;
+    color: red;
+    background: transparent;
+}
+
+.btnClose {
+    cursor: pointer;
+    padding: 0.8rem;
+    background: var(--btn-action);
+    border: none;
+}
+
+
 
 @media (max-width: 600px) {
     .nosProduits .container .box {

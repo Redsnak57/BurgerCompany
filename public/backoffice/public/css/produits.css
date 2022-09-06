@@ -1,3 +1,21 @@
+/* obligationRemplir */ 
+.obligationRemplir {
+    position: relative;
+}
+
+.obligationRemplir input, .obligationRemplir select, .obligationRemplir textarea {
+    width: 100%;
+}
+
+.obligationRemplir p {
+    position: absolute;
+    right: 3px;
+    top: 1px;
+    color: red;
+    font-size: 1.25rem;
+}
+
+
 .containerProduits {
     display: grid;
     grid-template-areas: "categorie produit" "ingredient produit" "tva produit" "promo produit";
@@ -155,6 +173,7 @@ input:checked.disponnibilite_produit::before{
 }
 /* fin animation button qui ouvre et ferme la div produit */
 
+/* tableau affichage */ 
 .modifier {
     background: #0594d0cf;
 }
@@ -163,10 +182,10 @@ input:checked.disponnibilite_produit::before{
     grid-template-columns: repeat(6, 1fr);
 }
 
-#tableIngredient {
+#tableIngredient , #tablePromo {
     grid-template-columns: repeat(4, 1fr);
 }
 
-#tableCategorie {
+#tableCategorie , #tableTva {
     grid-template-columns: repeat(3, 1fr);
 }

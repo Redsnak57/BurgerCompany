@@ -8,25 +8,31 @@ class ProduitManager {
      *
      * @param PDO $bdd
      * @param array $produits
-     * @return string
+     * @return bool
      */
-    public function makeNewProduit(PDO $bdd, array $produits){
+    public function makeNewProduit(PDO $bdd, array $produits): bool{
         if(isset($produits["nom_produit"],$produits["ID_categorie"], $produits["prixHt_produit"], $produits["ID_tva"], $produits["ID_promo"], $produits["description_produit"], $_FILES["image_produit"])){
-            $this->produit = new Produit(null, $produits["nom_produit"], $produits["ID_categorie"], $produits["prixHt_produit"], $produits["ID_tva"], $produits["ID_promo"], $produits["description_produit"], isset($produits["disponnibilite_produit"]) ? "1" : "0", $_FILES["image_produit"]["name"]);
-    
-            if(isset($produits['ingredient'])){
-                foreach($produits['ingredient'] as $ingredient){
-                    $this->produit->addIngredient($ingredient);
+            if(!empty($produits["nom_produit"] && !empty($produits["prixHt_produit"] && !empty($produits["description_produit"]) && !empty($produits["ID_categorie"] && !empty($produits["ID_tva"]))))){
+                $this->produit = new Produit(null, $produits["nom_produit"], $produits["ID_categorie"], $produits["prixHt_produit"], $produits["ID_tva"], $produits["ID_promo"], $produits["description_produit"], isset($produits["disponnibilite_produit"]) ? "1" : "0", $_FILES["image_produit"]["name"]);
+        
+                if(isset($produits['ingredient'])){
+                    foreach($produits['ingredient'] as $ingredient){
+                        $this->produit->addIngredient($ingredient);
+                    }
                 }
-            }
 
-            if($this->setNewProduit($bdd)){
-                $this->setNewImage();
-                return 1;
+                if($this->setNewProduit($bdd)){
+                    if($this->setNewImage()){
+                    return 1;
+                    }
+                } else {
+                    return 0;
+                }
             } else {
-                return 0;
+                echo "Merci de remplir tout les champs obligatoire.";
             }
         }
+        return 0;
     }
 
     /**
@@ -43,8 +49,19 @@ class ProduitManager {
                     $savePath = '../../asset/imgProduct/';
                     $savePath .= $file['name'];
                     if(move_uploaded_file($file['tmp_name'], $savePath)){
-                    //    cond img
-                    }else{
+                    //    condition extension image
+                    $extensions = array('png', '/gif', '/jpg', '/jpeg');
+                    //vérifie si l'extension est dans notre tableau           
+                    if(!in_array($savePath, $extensions)){
+                        echo 'Vous devez uploader un fichier de type png, gif, jpg, jpeg.';
+                    } else {
+                        // defini une taille maximal 
+                        define('MAXSIZE', 500000);       
+                        if($_FILES['image_produit']['size'] > MAXSIZE){
+                        echo 'Votre image est supérieure à la taille maximale de '.MAXSIZE.' octets';
+                        } 
+                    }
+                    } else {
                         echo 'Erreur';
                     }
                     break;
@@ -60,7 +77,7 @@ class ProduitManager {
      * Insère dans la BDD le nouveau produit
      *
      * @param PDO $bdd
-     * @return void
+     * @return bool
      */
     public function setNewProduit(PDO $bdd): bool{
         $str = "INSERT INTO produit (nom_produit, prixht_produit, image_produit, description_produit,	disponibilite_produit, ID_promo, ID_tva, ID_categorie) VALUES(:nom_produit, :prixht_produit, :image_produit, :description_produit, :disponibilite_produit, :ID_promo, :ID_tva, :ID_categorie)";
@@ -103,7 +120,7 @@ class ProduitManager {
 
     }
 
-    public function getAllProduct(PDO $bdd){
+    public function getAllProduct(PDO $bdd): array{
         $array = [];
 
         $str = "SELECT * FROM produit";

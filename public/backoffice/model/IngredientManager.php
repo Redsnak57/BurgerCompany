@@ -80,7 +80,7 @@ class IngredientManager {
         return $ingredient;
     }
 
-    
+
     public function getAllIngredient(): array{
         $returnArray = [];
 

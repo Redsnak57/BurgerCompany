@@ -1,24 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Georama:wght@400;600;800&display=swap');
-
-/* paramètre de base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Georama', sans-serif;
-}
-
-/* couleur */ 
-:root{
-    --couleur-body :#F9F9F9;  
-    --important : #0594D0; 
-    --btn-hover : #007198;
-    --ecriture-nav : #F2F2F2; 
-    --txt-body : #7E7E7E; 
-    --btn-action : linear-gradient(265.48deg, #F60030 46.34%, #FFCF00 102.96%); 
-
-}
-
 .container-addAdmin {
     display: grid;
     gap: 1rem;
