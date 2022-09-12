@@ -50,17 +50,18 @@ class ProduitManager {
                     $savePath .= $file['name'];
                     if(move_uploaded_file($file['tmp_name'], $savePath)){
                     //    condition extension image
-                    $extensions = array('png', '/gif', '/jpg', '/jpeg');
-                    //vérifie si l'extension est dans notre tableau           
-                    if(!in_array($savePath, $extensions)){
-                        echo 'Vous devez uploader un fichier de type png, gif, jpg, jpeg.';
-                    } else {
-                        // defini une taille maximal 
-                        define('MAXSIZE', 500000);       
-                        if($_FILES['image_produit']['size'] > MAXSIZE){
-                        echo 'Votre image est supérieure à la taille maximale de '.MAXSIZE.' octets';
-                        } 
-                    }
+                    // $extensions = array('png', '/gif', '/jpg', '/jpeg');
+                    // //vérifie si l'extension est dans notre tableau           
+                    // if(!in_array($savePath, $extensions)){
+                    //     echo 'Vous devez uploader un fichier de type png, gif, jpg, jpeg.';
+                    // } else {
+                    //     // defini une taille maximal 
+                    //     define('MAXSIZE', 500000);       
+                    //     if($_FILES['image_produit']['size'] > MAXSIZE){
+                    //     echo 'Votre image est supérieure à la taille maximale de '.MAXSIZE.' octets';
+                    //     } 
+                    // }
+                    echo "ok";
                     } else {
                         echo 'Erreur';
                     }

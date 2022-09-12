@@ -16,7 +16,7 @@ if(isset($_SESSION["user"])){
 
 /* Appel de la BDD */
 $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
-
+    
 ?>
 
 <!DOCTYPE html>

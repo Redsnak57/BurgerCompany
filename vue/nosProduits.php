@@ -26,7 +26,7 @@ $offreManager = new OffreManager(ConnectionDb::getInstance()->connection);
         <span class="produits__item" data-filter="all">  Tous </span>
         <?php
         foreach($categorieClient as $cat){
-            $filter = strtolower(str_replace("é","e", $cat["nom_categorie"]));
+            $filter = strtolower(str_replace(['é', ' '],['e', ''], $cat["nom_categorie"]));
             echo "<span class='produits__item' data-filter=$filter> $cat[nom_categorie] </span>";
         }
         ?>
@@ -34,7 +34,7 @@ $offreManager = new OffreManager(ConnectionDb::getInstance()->connection);
 
 
     <?php foreach($categorieClient as $cat): 
-            $filter = strtolower(str_replace("é","e", $cat["nom_categorie"]));
+            $filter = strtolower(str_replace(['é', ' '],['e', ''], $cat["nom_categorie"]));
         ?>
         <div class="container nosProduits" data-item="<?= $filter ?>">
         
@@ -61,49 +61,62 @@ $offreManager = new OffreManager(ConnectionDb::getInstance()->connection);
                 </div>
                 <?php
                     else:
-                        ?>
+                ?>
+
     	        <div class="box">
                     <p><?= $prod["nom_produit"]; ?></p>
                     <img src="./asset/imgProduct/<?= $prod["image_produit"]; ?>">
 
-                    <button data-popup-ref="monPopup">Modal </button>
+                    <!-- Modal -->
+                    <div class="acheter">
+                        <i class="gauche_i fa-solid fa-info" data-popup-ref="monPopup">
 
-                    <div class="popup" data-popup-id="monPopup">
-                        <div class="popupContent">
-                            <!-- Header popup -->
-                            <div class="popupHeader">
-                                <p><?= $prod["nom_produit"]; ?></p>
-                                <span class="btnClose" data-dismiss-popup id="closeCroix"> &times; </span>
-                            </div>
-                            <!-- Body  popup-->
-                            <div class="popupBody">
-                                <div id="imgPopup">
-                                    <img id="imgPopup" src="./asset/imgProduct/<?= $prod["image_produit"]; ?>">
+                 
+                        <div class="popup" data-popup-id="monPopup" >
+                            <div class="popupContent">
+                                <!-- Header popup -->
+                                <div class="popupHeader">
+                                    <p><?= $prod["nom_produit"]; ?></p>
+                                    <span class="btnClose" data-dismiss-popup id="closeCroix"> &times; </span>
                                 </div>
-                                <div id="descPopup">
-                                    <p><?= $prod["description_produit"]; ?></p>
+                                <!-- Body  popup-->
+                                <div class="popupBody">
+                                    <div id="imgPopup">
+                                        <img id="imgPopup" src="./asset/imgProduct/<?= $prod["image_produit"]; ?>">
+                                    </div>
+                                    <div id="descPopup">
+                                        <p><?= $prod["description_produit"]; ?></p>
+                                    </div>
+                                    <div id="ingredientPopup">
+                                    
+                                    </div>
                                 </div>
-                                <div id="ingredientPopup">
-                                   
+
+                                <!-- Footer Popup -->
+                                <div class="popupFooter">
+                                    <?php
+                                    foreach($allProduit as $all){
+                                    ?>                            
+                                        <a class="btnClose" href="../vue/addPanier.php?ID=<?=$all["ID"]?>">Acheter</a>
+                                
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
-                            </div>
-                            <!-- Footer Popup -->
-                            <div class="popupFooter">
-                                <button class="btnClose" data-dismiss-popup>Fermer</button>
                             </div>
                         </div>
+                        </i>
                     </div>
+                    
+                    
+                    
                     <div class="acheter">
                         <!-- Panier test  -->
                         <?php
                         foreach($allProduit as $all){
-                        ?>
-                            <i class="gauche_i fa-solid fa-info">
-                                <a href="../vue/addPanier.php?ID=<?=$all["ID"]?>"></a>
-                            </i>
-                            <i class="droite_i fa-solid fa-basket-shopping">
-                                <a href="../vue/addPanier.php?ID=<?=$all["ID"]?>"></a>
-                            </i>    
+                        ?>                           
+                            <a  href="../vue/addPanier.php?ID=<?=$all["ID"]?>">okk<i class="droite_i fa-solid fa-basket-shopping"></i></a>
+                               
                         <?php
                         }
                         ?>

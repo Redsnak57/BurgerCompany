@@ -69,12 +69,12 @@ class User{
 
     public function setNom($nom){
         $nom = ucfirst(strtolower($nom));
-        $this->nom = strip_tags($nom);
+        $this->nom = htmlspecialchars(strip_tags($nom));
     }
 
     public function setPrenom($prenom){
         $prenom = ucfirst(strtolower($prenom));
-        $this->prenom = strip_tags($prenom);
+        $this->prenom = htmlspecialchars(strip_tags($prenom));
     }
 
     public function setEmail($email){
