@@ -215,7 +215,7 @@ $allIngredient = $ingredient->getAllIngredient();
                 <td>{$allProd->getPrixHt_produit()}</td>
                 <td><img src='../../asset/imgProduct/{$allProd->getImage_produit()}'</td>
                 <td>{$allProd->getDescription_produit()}'</td>
-                <td class='floatingBtn'><button><a href=index.php?page=produits&editProduit=".$allProd->getID()." class='btn modifier'> Modifier </td>
+                <td class='floatingBtn'><button><a href=index.php?page=edit&produit=".$allProd->getID()." class='btn modifier'> Modifier </td>
                 <td class='floatingBtn'><button><a href=index.php?page=produits&supProduit=".$allProd->getID()." class='btn'> Supprimer </td>
             </tr>";
         }

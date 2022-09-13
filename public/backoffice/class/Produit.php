@@ -90,7 +90,7 @@ class Produit{
     }
 
     public function getDisponnibilite_produit(): bool{
-        return $this->disponnibilite_produit;
+        return (!empty($this->disponnibilite_produit) && isset($this->disponnibilite_produit));
     }
 
     public function setNom_produit(string $nom_produit): void{
@@ -146,7 +146,7 @@ class Produit{
         $this->image_produit = $image_produit;
     }
 
-    public function setDisponnibilite_produit(bool $disponnibilite_produit): void{
+    public function setDisponibilite_produit(bool $disponnibilite_produit): void{
         $this->disponnibilite_produit = $disponnibilite_produit;
     }
 

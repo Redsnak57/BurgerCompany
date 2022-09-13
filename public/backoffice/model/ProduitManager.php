@@ -149,6 +149,61 @@ class ProduitManager {
         }
     }
 
+    public function getProduitById(PDO $bdd, int $id): Produit{
+        $produit = new Produit();
+
+        $str = 'SELECT * FROM produit WHERE ID = :id';
+        $query = $bdd->prepare($str);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+        if($query->execute()){
+            $data = $query->fetch(PDO::FETCH_ASSOC);
+            if($data != false){
+                $produit->hydrate($data);
+            }
+        }
+
+        return $produit;
+    }
+
+    public function setEditProduit(PDO $bdd, array $produit): bool{
+        $this->produit = new Produit();
+
+        foreach($produit as $key => $prod){
+            if(is_numeric($prod)){
+                if(stristr($prod,",") != false OR stristr($prod, ".") != false){
+                    $produit[$key] = floatval($prod);
+                } else {
+                    $produit[$key] = intval($prod);
+                }
+            }
+            if(empty($prod)){
+                $produit[$key] = null;
+            }
+        }
+        var_dump($_POST,$produit);
+        $this->produit->hydrate($produit);
+
+        $str = "UPDATE produit SET nom_produit=:nom_produit, prixht_produit=:prixht_produit, image_produit=:image_produit, description_produit=:description_produit, disponibilite_produit=:disponibilite_produit, ID_promo=:ID_promo, ID_tva=:ID_tva, ID_categorie=:ID_categorie WHERE ID=:ID";
+        $query = $bdd->prepare($str);
+        $query->bindValue(":nom_produit", $this->produit->getNom_produit(), PDO::PARAM_STR);
+        $query->bindValue(":prixht_produit", $this->produit->getPrixHt_produit(), PDO::PARAM_STR);
+        $query->bindValue(":image_produit", $_FILES['image_produit']['name'], PDO::PARAM_STR);
+        $query->bindValue(":description_produit", $this->produit->getDescription_produit(), PDO::PARAM_STR);
+        $query->bindValue(":disponibilite_produit", $this->produit->getDisponnibilite_produit(), PDO::PARAM_BOOL);
+        $query->bindValue(":ID_promo", $this->produit->getPromo()->getID(), PDO::PARAM_INT);
+        $query->bindValue(":ID_tva", $this->produit->getTva()->getID(), PDO::PARAM_INT);
+        $query->bindValue(":ID_categorie", $this->produit->getcategorie()->getID(), PDO::PARAM_INT);
+        $query->bindValue(":ID", $this->produit->getID(), PDO::PARAM_INT);
+
+        if($query->execute()){
+            $this->setNewImage();
+            // header("Location: index.php?page=produits");
+            return true;
+        }
+        return false;
+    }
+
 }
 
 ?>

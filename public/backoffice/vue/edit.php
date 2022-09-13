@@ -3,13 +3,15 @@
 $title = "Modification";
 
 if(isset($_GET["promo"])){
-    $title = "Promotions";
+    $title = "Promotion";
 } elseif(isset($_GET["tva"])){
-    $title = "Tvas";
+    $title = "Tva";
 } elseif(isset($_GET["categorie"])){
-    $title = "Catégories";
+    $title = "Catégorie";
 } elseif(isset($_GET["ingredient"])){
-    $title = "Ingrédients";
+    $title = "Ingrédient";
+} elseif(isset($_GET["produit"])){
+    $title = "Produit";
 }
 ?>
 
@@ -102,22 +104,75 @@ if(isset($_GET["ingredient"])){
     </form>
 <?php
     }
-// Produit à finir !!  
-$categorie = new CategorieManager();
+
+
+// Produit  
+$produit = new ProduitManager();
+$allPromo = $promo->getAllPromo(ConnectionDbAdmin::getInstance()->connection);
+$allTva = $tva->getAllTva(ConnectionDbAdmin::getInstance()->connection);
+$allCategorie = $categorie->getAllCategorie(ConnectionDbAdmin::getInstance()->connection);
 
 // Si le formulaire tva est remplis update la BDD
-if(isset($_POST["ID"],$_POST["nom_categorie"])){
-    $categorie->setEditCategorie($bdd->connection, $_POST);
+if(isset($_POST["ID"],$_POST["nom_produit"],$_POST["prixht_produit"],$_FILES["image_produit"],$_POST["description_produit"],$_POST["ID_promo"],$_POST["ID_tva"],$_POST["ID_categorie"])){
+    $produit->setEditProduit($bdd->connection, $_POST);
 }
 
 // Si la balise GET tva est trouvé alors recupère l'ID
-if(isset($_GET["categorie"])){
-    $afficheCategorie = $categorie->getCategorieByID($bdd->connection, $_GET["categorie"]);
+if(isset($_GET["produit"])){
+    $afficheProduit = $produit->getProduitByID($bdd->connection, $_GET["produit"]);
 ?>
-    <form method="POST">
-        <input type="hidden" name="ID" value="<?= $afficheCategorie->getID(); ?>">
-        <span>La catégorie est : </span>
-        <input type="text" name="nom_categorie" value="<?= $afficheCategorie->getNom_categorie(); ?>">
+    <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="ID" value="<?= $afficheProduit->getID(); ?>">
+        <span>Le nom est : </span>
+        <input type="text" name="nom_produit" value="<?= $afficheProduit->getNom_produit(); ?>">
+        <span> Il coute : </span>
+        <input type="text" name="prixht_produit" value="<?= $afficheProduit->getPrixht_produit(); ?>">
+        <span> L'image :</span>
+        <input type="file" name="image_produit" id="image_produit">
+        <span> La description :</span>
+        <input type="text" name="description_produit" value="<?= $afficheProduit->getDescription_produit(); ?>">
+        <span> Disponnible :</span>
+            <?php
+             echo $afficheProduit->getDisponnibilite_produit() 
+                ? ' <input type="checkbox" class="disponnibilite_produit" name="disponibilite_produit" checked>'
+                : ' <input type="checkbox" class="disponnibilite_produit" name="disponibilite_produit" >' ;
+            ?>
+        <select name="ID_promo" id="">
+            <option value="">---Promotion (null si vide)---</option>
+            <?php
+                foreach($allPromo as $promo){
+                    if($promo->getID() == $afficheProduit->getPromo()->getID()){
+                        echo "<option value='{$promo->getID()}' selected> {$promo->getNom_promo()} {$promo->getPourcentage_promo()}% </option>";
+                    } else {
+                        echo "<option value='{$promo->getID()}'> {$promo->getNom_promo()} {$promo->getPourcentage_promo()}% </option>";
+                    }
+                }
+            ?>
+        </select>
+        <select name="ID_tva" id="">
+            <option value="">---TVA---</option>
+            <?php
+                foreach($allTva as $tvas){
+                    if($tvas->getID() == $afficheProduit->getTva()->getID()){
+                        echo "<option value='{$tvas->getID()}' selected> {$tvas->getTaux()}% </option>";
+                    }else {
+                        echo "<option value='{$tvas->getID()}'> {$tvas->getTaux()}% </option>";
+                    }
+                }
+            ?>
+        </select>
+        <select name="ID_categorie" id="">
+            <option value="">---Catégorie---</option>
+            <?php
+                foreach($allCategorie as $cat){
+                    if($cat->getID() == $afficheProduit->getcategorie()->getID()){
+                        echo "<option value='{$cat->getID()}' selected> {$cat->getNom_categorie()} </option>";
+                    }else {
+                        echo "<option value='{$cat->getID()}'> {$cat->getNom_categorie()} </option>";
+                    }
+                }
+            ?>
+        </select>
         <button type="submit">Modifier</button>
     </form>
 <?php
