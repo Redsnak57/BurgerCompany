@@ -65,12 +65,6 @@ class TvaManager {
      * @return array
      */
     public function getAllTva(PDO $bdd): array{
-        // $str = "SELECT * FROM tva";
-        // $query = $bdd->query($str);
-        // $reponse = $query->fetchAll();
-
-        // return $reponse;
-
         $array = [];
 
         $str = "SELECT * FROM tva";
@@ -123,6 +117,28 @@ class TvaManager {
         } else {
             echo "Une erreur c'est produite.";
         }
+    }
+
+    /**
+     * Modifie l'ID dans la BDD
+     *
+     * @param PDO $bdd
+     * @param array $tva
+     * @return boolean
+     */
+    public function setEditTva(PDO $bdd, array $tva): bool{
+        $this->tva = new Tva();
+        $this->tva->hydrate($tva);
+
+        $str = "UPDATE tva SET taux=:taux WHERE ID=:ID";
+        $query = $bdd->prepare($str);
+        $query->bindValue(":taux", $this->tva->getTaux(), PDO::PARAM_STR);
+        $query->bindValue(":ID", $this->tva->getID(), PDO::PARAM_INT);
+        if($query->execute()){
+            header("Location: index.php?page=produits");
+            return true;
+        }
+        return false;
     }
 }
 

@@ -83,6 +83,13 @@ class CategorieManager {
         
     }
 
+    /**
+     * Récupère un seul objet avec son ID
+     *
+     * @param PDO $bdd
+     * @param integer $ID
+     * @return Categorie
+     */
     public function getCategorieByID(PDO $bdd, int $ID): Categorie{
         $cat = new Categorie();
 
@@ -101,6 +108,13 @@ class CategorieManager {
         return $cat;
     }
 
+    /**
+     * Supprime une catégorie via son ID
+     *
+     * @param PDO $bdd
+     * @param integer $ID
+     * @return void
+     */
     public function suppCategorieByID(PDO $bdd, int $ID){
         $reqDelete = "DELETE FROM categorie WHERE ID=:ID";
         $query = $bdd->prepare($reqDelete);
@@ -111,6 +125,28 @@ class CategorieManager {
         } else {
             echo "Une erreur c'est produite.";
         }
+    }
+
+    /**
+     * Modifie catégorie avec l'ID
+     *
+     * @param PDO $bdd
+     * @param array $product
+     * @return boolean
+     */
+    public function setEditCategorie(PDO $bdd, array $product): bool{
+        $this->product = new Categorie();
+        $this->product->hydrate($product);
+
+        $str = "UPDATE categorie SET nom_categorie=:nom_categorie WHERE ID=:ID";
+        $query = $bdd->prepare($str);
+        $query->bindValue(":nom_categorie", $this->product->getNom_categorie(), PDO::PARAM_STR);
+        $query->bindValue(":ID", $this->product->getID(), PDO::PARAM_INT);
+        if($query->execute()){
+            header("Location: index.php?page=produits");
+            return true;
+        }
+        return false;
     }
 }
 

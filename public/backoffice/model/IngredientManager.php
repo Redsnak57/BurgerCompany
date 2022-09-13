@@ -1,11 +1,10 @@
 <?php
 
 class IngredientManager {
-    private PDO $db;
     public Ingredient $ingredient;
 
     public function __construct(PDO $bdd){
-        $this->db = $bdd;
+        $this->bdd = $bdd;
     }
 
     /**
@@ -15,7 +14,7 @@ class IngredientManager {
      * @return string
      */
     public function checkIngredient(): string{
-        $check_tva = $this->db->prepare("SELECT * FROM ingredient WHERE nom_ingredient=:nom");
+        $check_tva = $this->bdd->prepare("SELECT * FROM ingredient WHERE nom_ingredient=:nom");
         $check_tva->bindValue(":nom", $this->ingredient->getNom(), PDO::PARAM_STR);
         $check_tva->execute();
 
@@ -37,7 +36,7 @@ class IngredientManager {
             echo "<p> Ingrédient déjà existant </p>";
         } else {
             $str = "INSERT INTO ingredient (nom_ingredient,prixht_ingredient) VALUES(:nom,:prix)";
-            $query = $this->db->prepare($str);
+            $query = $this->bdd->prepare($str);
             $query->bindValue(":nom", $this->ingredient->getNom(), PDO::PARAM_STR);
             $query->bindValue(":prix", $this->ingredient->getPrixht(), PDO::PARAM_STR);
             return $query->execute();
@@ -63,19 +62,27 @@ class IngredientManager {
         return false;
     }
 
+    /**
+     * Récupère un seul objet avec son ID
+     *
+     * @param integer $id
+     * @return Ingredient
+     */
     public function getIngredientById(int $id): Ingredient
     {
+
         $ingredient = new Ingredient();
 
         $str = 'SELECT * FROM ingredient WHERE ID = :id';
-
-        $query = $this->db->prepare($str);
-
+        $query = $this->bdd->prepare($str);
         $query->bindValue(':id', $id, PDO::PARAM_INT);
 
-        $query->execute();
-
-        $ingredient->hydrate($query->fetch(PDO::FETCH_ASSOC));
+        if($query->execute()){
+            $data = $query->fetch(PDO::FETCH_ASSOC);
+            if($data != false){
+                $ingredient->hydrate($data);
+            }
+        }
 
         return $ingredient;
     }
@@ -85,7 +92,7 @@ class IngredientManager {
         $returnArray = [];
 
         $str = "SELECT * FROM ingredient";
-        $query = $this->db->query($str);
+        $query = $this->bdd->query($str);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($result as $ingredient){
@@ -97,9 +104,9 @@ class IngredientManager {
         return $returnArray; 
     }
 
-    public function suppIngredientByID(PDO $bdd, int $ID): bool {
+    public function suppIngredientByID(int $ID): bool {
         $reqDelete = "DELETE FROM ingredient WHERE ID=:ID";
-        $query = $bdd->prepare($reqDelete);
+        $query = $this->bdd->prepare($reqDelete);
         $query->bindValue(":ID", $ID, PDO::PARAM_INT);
 
         if($query->execute()){
@@ -108,6 +115,28 @@ class IngredientManager {
             return false;
             echo "Une erreur c'est produite.";
         }
+    }
+
+    /**
+     * Modifie Ingrédient avec l'ID
+     *
+     * @param array $ingredient
+     * @return boolean
+     */
+    public function setEditIngredient(array $ingredient): bool{
+        $this->ingredient = new Ingredient();
+        $this->ingredient->hydrate($ingredient);
+
+        $str = "UPDATE ingredient SET nom_ingredient=:nom_ingredient, prixht_ingredient=:prixht_ingredient WHERE ID=:ID";
+        $query = $this->bdd->prepare($str);
+        $query->bindValue(":nom_ingredient", $this->ingredient->getNom(), PDO::PARAM_STR);
+        $query->bindValue(":prixht_ingredient", $this->ingredient->getPrixht(), PDO::PARAM_STR);
+        $query->bindValue(":ID", $this->ingredient->getID(), PDO::PARAM_INT);
+        if($query->execute()){
+            header("Location: index.php?page=produits");
+            return true;
+        }
+        return false;
     }
 }
 

@@ -44,7 +44,7 @@ $ingredient = new IngredientManager(ConnectionDbAdmin::getInstance()->connection
 $ingredient->makeNewIngredient($_POST);
 // Supprime dans la table ingrédient 
 if(isset($_GET["supIngredient"])){
-    $ingredient->suppIngredientByID($bdd->connection, $_GET["supIngredient"]);
+    $ingredient->suppIngredientByID($_GET["supIngredient"]);
 }
 // Fait une boucle pour l'afficher  le produit + le tableau
 $allIngredient = $ingredient->getAllIngredient();
@@ -246,7 +246,7 @@ $allIngredient = $ingredient->getAllIngredient();
             <tr class='resultatAffichage'>
                 <td>{$ing->getNom()}</td>
                 <td>{$ing->getPrixht()}€</td>
-                <td class='floatingBtn'><button><a href=index.php?page=produits&editIngredient=".$ing->getID()." class='btn modifier'> Modifier </td>
+                <td class='floatingBtn'><button><a href=index.php?page=edit&ingredient=".$ing->getID()." class='btn modifier'> Modifier </td>
                 <td class='floatingBtn'><button><a href=index.php?page=produits&supIngredient=".$ing->getID()." class='btn'> Supprimer </td>
                 </tr>";
             }
@@ -276,7 +276,7 @@ $allIngredient = $ingredient->getAllIngredient();
         echo" 
             <tr class='resultatAffichage'>
                 <td>{$cat->getNom_categorie()}</td>
-                <td class='floatingBtn'><button><a href=index.php?page=produits&editCategorie=".$cat->getID()." class='btn modifier'> Modifier </td>
+                <td class='floatingBtn'><button><a href=index.php?page=edit&categorie=".$cat->getID()." class='btn modifier'> Modifier </td>
                 <td class='floatingBtn'><button><a href=index.php?page=produits&supCategorie=".$cat->getID()." class='btn'> Supprimer </td>
                 </tr>";
             }
@@ -305,7 +305,7 @@ $allIngredient = $ingredient->getAllIngredient();
         echo" 
             <tr class='resultatAffichage'>
                 <td>{$tvas->getTaux()} %</td>
-                <td class='floatingBtn'><button><a href=index.php?page=produits&editTva=".$tvas->getID()." class='btn modifier'> Modifier </td>
+                <td class='floatingBtn'><button><a href=index.php?page=edit&tva=".$tvas->getID()." class='btn modifier'> Modifier </td>
                 <td class='floatingBtn'><button><a href=index.php?page=produits&supTva=".$tvas->getID()." class='btn'> Supprimer </td>
             </tr>";
         }
@@ -336,7 +336,7 @@ $allIngredient = $ingredient->getAllIngredient();
             <tr class='resultatAffichage'>
                 <td>{$promos->getNom_promo()}</td>
                 <td>{$promos->getPourcentage_promo()} %</td>
-                <td class='floatingBtn'><button><a href=index.php?page=produits&editPromo=".$promos->getID()." class='btn modifier'> Modifier </td>
+                <td class='floatingBtn'><button><a href=index.php?page=edit&promo=".$promos->getID()." class='btn modifier'> Modifier </td>
                 <td class='floatingBtn'><button><a href=index.php?page=produits&supPromo=".$promos->getID()." class='btn'> Supprimer </td>
             </tr>";
         }
