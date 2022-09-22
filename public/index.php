@@ -117,6 +117,9 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
             case "parametre":
                 include("../vue/parametre.php");
                 break;
+            case "addPanier":
+                include("../vue/addPanier.php");
+                break;
             default:
                 include("../vue/accueil.php"); // Par défault page d'accueil
         }
