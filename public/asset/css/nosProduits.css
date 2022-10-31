@@ -123,10 +123,14 @@
     min-height: 100vh;
 }
 .panier img{
-    width: 40px;
+    width: 100px;
     padding: 8px 0;
 }
 
+.panier td a i {
+    color: red;
+    font-size: 1.15rem;
+}
 .panier section {
     width: 70%;
     background-color: #fff;
@@ -163,6 +167,24 @@ tr {
     color: var(--important);
     padding: 15px;
 }
+
+.btn a {
+    position: relative;
+}
+
+.panierUserLog {
+    font-size: 1.15rem;
+    position: absolute;
+    right: -9px;
+    top: -2px;
+    color: var(--btn-action);
+}
+
+.total .commander a {
+    text-decoration: none;
+    color: var(--btn-action);
+}
+
 /* FIn panier */ 
 
 /* Modal */ 

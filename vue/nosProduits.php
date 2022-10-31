@@ -1,28 +1,7 @@
-<?php
-//------Catégorie-----\\
-$manager = new CategorieClientManager();
-// Fait une boucle pour l'afficher dans produit
-$categorieClient = $manager->getAllClientCategorie(ConnectionDb::getInstance()->connection);
-
-//------Produit-----\\
-$produit = new ProduitClientManager();
-// Fait une boucle pour l'afficher dans produit
-$newProduit = $produit->getAllClientProduct(ConnectionDb::getInstance()->connection);
-$allProduit = $produit->getAllProduit(ConnectionDb::getInstance()->connection);
-
-// Recupere la promo 
-$offreManager = new OffreManager(ConnectionDb::getInstance()->connection);
-
-?>
-
-
-
 <section class="nosProduits">
     <div class="heading">
         <p>Découvre tous <span> nos produits</span></p>
     </div>
-
-    <span> Panier <a href="index.php?page=addPanier"><?= array_sum($_SESSION["panier"]); ?></a></span>
 
     <div class="produits__filters" id="filters">
         <span class="produits__item " data-filter="*"> Tous </span>

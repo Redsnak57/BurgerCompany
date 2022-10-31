@@ -30,6 +30,14 @@ class ProduitClientManager {
         return $reponse;
     }
 
+    public function prodVedette(PDO $bdd){
+        $str = "SELECT * FROM produit ORDER BY RAND() LIMIT 4";
+        $query = $bdd->query($str);
+        $reponse = $query->fetchAll();
+
+        return $reponse;
+    }
+
 }
 
 ?>

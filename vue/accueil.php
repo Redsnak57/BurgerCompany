@@ -35,7 +35,7 @@
     <div class="heading">
         <p>Découvres les <span> vedettes du moment</span></p>
     </div>
-    <div class="container">
+    <div class="container">        
         <div class="box promo">
             <p> Double cheese Burger</p>
             <img src="../public//asset/img/double_chesse.png" alt="">
@@ -45,7 +45,7 @@
                 <p class="prix">5.99€</p>
             </div>
         </div>
-        <div class="box promo">
+        <div class="box">
             <p> Double cheese Burger</p>
             <img src="../public//asset/img/double_chesse.png" alt="">
             <div class="acheter">

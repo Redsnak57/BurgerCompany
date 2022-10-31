@@ -3,8 +3,8 @@
 function loadClass($class){
     if(file_exists("../model/$class.php")){
         require_once("../model/$class.php");
-    } elseif(file_exists("../class/$class.php")){
-        require_once("../class/$class.php");
+    } elseif(file_exists("../controller/$class.php")){
+        require_once("../controller/$class.php");
     }
 }
 spl_autoload_register('loadClass');
@@ -12,10 +12,11 @@ spl_autoload_register('loadClass');
 session_start();
 if(isset($_SESSION["user"])){
     $user = $_SESSION["user"];
-}
-
+}   
 /* Appel de la BDD */
 $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
+
+
     
 ?>
 
@@ -63,17 +64,26 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
 
     // Utilisateur connecté 
     if(isset($user)){
+    $panierUserLog = isset($_SESSION['panier']) ? array_sum($_SESSION["panier"]) : 0;
     echo"
     <nav>
         <div class='bx bx-menu' id='menu-icon'></div>
         <ul>    
             <img src=./asset/img/logo.png alt='Logo du site'> 
             <li><a href=index.php?page=accueil class='menu'>Accueil</a></li>
-            <li><a href=index.php?page=nosProduits class='menu'>Nos produits</a></li>
+            <li><a href=index.php?page=nosProduits class='menu'> Nos produits</a></li>
             <li><a href=index.php?page=contact class='menu'>Contact</a></li>
         </ul>
-        <div class='buttons-connecte'>
-            <button class='btn bag-icon'><i class='bx bxs-cart' id='user-bag'></i></button>
+        <div class='buttons-connecte'>";
+            echo "
+            <button class='btn bag-icon'><a href=index.php?page=addPanier class='menu'>"; 
+            if($panierUserLog == 0) {
+                echo "<p class='panierUserLog'></p><i class='bx bxs-cart' id='user-bag'></i></a>";
+            } else {
+                echo "<p class='panierUserLog'>".$panierUserLog."</p><i class='bx bxs-cart' id='user-bag'></a></i>";
+            }
+            echo "
+            </button>
             <button class='btn user-icon'><i class='bx bxs-user' id='user-profil'></i></button>
         </div>
     </nav>";
@@ -97,7 +107,8 @@ $bdd = ConnectionDb::getInstance("localhost", "burgercompany", "root", "");
                 include("../vue/accueil.php");
                 break;
             case "nosProduits":
-                include("../vue/nosProduits.php");
+                include("../controller/ProduitClient.php");
+                nosProduitsController();
                 break;
             case "contact":
                 include("../vue/contact.php");
